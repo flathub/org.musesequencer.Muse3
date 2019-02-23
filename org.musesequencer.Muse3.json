@@ -197,6 +197,7 @@
     },
     {
       "name": "libinstpatch",
+      "rm-configure": true,
       "sources": [
         {
           "type": "archive",
@@ -207,6 +208,13 @@
           "type": "patch",
           "strip-components": 0,
           "path": "patches/instpatch.examples.patch"
+        },
+        {
+          "type": "script",
+          "commands": [
+            "autoreconf -fiv"
+          ],
+          "dest-filename": "autogen.sh"
         }
       ]
     },

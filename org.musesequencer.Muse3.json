@@ -4,9 +4,8 @@
   "runtime-version": "5.12",
   "sdk": "org.kde.Sdk",
   "command": "muse3",
-  "rename-desktop-file": "muse.desktop",
-  "rename-appdata-file": "muse.appdata.xml",
-  "rename-icon": "muse_icon",
+  "tags": [ "beta" ],
+  "desktop-file-name-suffix": " (Beta)",
   "finish-args": [
     /* X11 + XShm access */
     "--share=ipc",
@@ -18,10 +17,9 @@
     /* MIDI */
     "--device=all",
     /* Allow loading, saving files from anywhere (portals don’t work yet) */
-    "--filesystem=host",
+    "--filesystem=home",
     /* Allow other instances to see lockfiles */
-    "--env=TMPDIR=/var/tmp",
-    "--env=QT_AUTO_SCREEN_SCALE_FACTOR=1"
+    "--env=TMPDIR=/var/tmp"
   ],
   "cleanup": [
     "/share/man",
@@ -235,22 +233,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/lmuse/muse-3.0/muse-3.0.2.tar.gz",
-          "sha256": "c9efddb901632ce7acfb163e319a56eae27b841dc30dd19d417bbc14a9d1b748"
-        },
-        {
-          "type": "patch",
-          "path": "patches/muse-QButtonGroup.patch"
-        },
-        {
-          "type": "patch",
-          "strip-components": 2,
-          "path": "patches/muse-qt511.patch"
-        },
-        {
-          "type": "patch",
-          "strip-components": 2,
-          "path": "patches/muse-sord-str.patch"
+          "url": "https://downloads.sourceforge.net/project/lmuse/muse-3.1/muse-3.1.0pre1.tar.gz",
+          "sha256": "510eb5e47cae8c9eb26a8526cb850bf77b2791aa3423220a316c1bcd03ec7810"
         },
         {
           "type": "patch",

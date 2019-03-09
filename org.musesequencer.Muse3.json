@@ -3,7 +3,7 @@
   "runtime": "org.kde.Platform",
   "runtime-version": "5.12",
   "sdk": "org.kde.Sdk",
-  "command": "muse3",
+  "command": "muse3_wrap.sh",
   "tags": [ "beta" ],
   "desktop-file-name-suffix": " (Beta)",
   "finish-args": [
@@ -58,10 +58,7 @@
         "./waf install"
       ],
       "cleanup": [
-        "/bin",
-        "/share",
-        "/lib/jack",
-        "/lib/libjackserver.so*"
+        "/share"
       ],
       "sources": [
         {
@@ -278,6 +275,9 @@
           "LADSPA_PATH=/app/lib/ladspa"
         ]
       },
+      "post-install": [
+        "install -Dm555 -t /app/bin muse3_wrap.sh"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -288,6 +288,10 @@
           "type": "patch",
           "strip-components": 2,
           "path": "patches/muse-cmake-gtk2.patch"
+        },
+        {
+          "type": "file",
+          "path": "muse3_wrap.sh"
         }
       ]
     }

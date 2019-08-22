@@ -276,6 +276,11 @@
           "path": "patches/muse-cmake-gtk2.patch"
         },
         {
+          "type": "patch",
+          "strip-components": 2,
+          "path": "patches/appdata-validate.patch"
+        },
+        {
           "type": "file",
           "path": "muse3_wrap.sh"
         }

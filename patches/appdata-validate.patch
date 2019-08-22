@@ -1,0 +1,22 @@
+diff --git a/muse3/packaging/org.musesequencer.Muse3.appdata.xml b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
+index 1ff4e498..6548dac8 100644
+--- a/muse3/packaging/org.musesequencer.Muse3.appdata.xml
++++ b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
+@@ -7,6 +7,7 @@
+   <name>MusE</name>
+   <summary>The open source sequencer</summary>
+   <translation/>
++  <content_rating type="oars-1.1" />
+   <description>
+     <p>
+       MusE is a MIDI/Audio sequencer with recording and editing capabilities. It can
+@@ -31,4 +32,9 @@
+   </screenshots>
+   <url type="homepage">http://muse-sequencer.org/</url>
+   <update_contact>lmuse-user_at_lists.sourceforge.net</update_contact>
++  <releases>
++    <release version="3.0.2" date="2018-01-30">
++      <url>https://sourceforge.net/projects/lmuse/files/muse-3.0/</url>
++    </release>
++  </releases>
+ </component>

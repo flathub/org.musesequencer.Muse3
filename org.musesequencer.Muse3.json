@@ -249,12 +249,9 @@
     },
     {
       "name": "muse3",
-      "buildsystem": "simple",
-      "build-commands": [
-        /* For some reason the cmake buildsystem in flatpak fail */
-        /* and we can't use the script in the tree as we need to set the prefix */
-        "mkdir build && cd build && cmake -G Ninja -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=/app ..",
-        "cd build && ninja install"
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DCMAKE_BUILD_TYPE=release"
       ],
       "build-options": {
         "env": [
@@ -279,6 +276,11 @@
           "type": "patch",
           "strip-components": 2,
           "path": "patches/appdata-validate.patch"
+        },
+        {
+          "type": "patch",
+          "strip-components": 2,
+          "path": "patches/muse-no-all.patch"
         },
         {
           "type": "file",

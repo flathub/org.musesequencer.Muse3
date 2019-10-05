@@ -1,0 +1,584 @@
+commit 1a034a7a407e43e4523f5f8dd38c35861c93fe3c
+Author: Hubert Figuière <hub@figuiere.net>
+Date:   Sun Sep 29 23:52:25 2019 -0400
+
+    Remove all.h that hasn't been used since... so long
+
+diff --git a/muse3/CMakeLists.txt b/muse3/CMakeLists.txt
+index b646679e..cba158f5 100644
+--- a/muse3/CMakeLists.txt
++++ b/muse3/CMakeLists.txt
+@@ -554,14 +554,6 @@ configure_file (
+       ${PROJECT_BINARY_DIR}/config.h
+       )
+ 
+-file (COPY ${PROJECT_SOURCE_DIR}/all.h DESTINATION ${PROJECT_BINARY_DIR})
+-file (RENAME ${PROJECT_BINARY_DIR}/all.h ${PROJECT_BINARY_DIR}/all-pic.h)
+-
+-file (COPY ${PROJECT_SOURCE_DIR}/all.h DESTINATION ${PROJECT_BINARY_DIR})
+-file (RENAME ${PROJECT_BINARY_DIR}/all.h ${PROJECT_BINARY_DIR}/all-pic-debug.h)
+-
+-file (COPY ${PROJECT_SOURCE_DIR}/all.h DESTINATION ${PROJECT_BINARY_DIR})
+-
+ include_directories(
+    .
+    ${PROJECT_SOURCE_DIR}
+diff --git a/muse3/al/CMakeLists.txt b/muse3/al/CMakeLists.txt
+index a9747acb..0450819c 100644
+--- a/muse3/al/CMakeLists.txt
++++ b/muse3/al/CMakeLists.txt
+@@ -44,7 +44,6 @@ endif (USE_SSE)
+ ## Define target
+ ##
+ add_library(al ${MODULES_BUILD}
+-      ${PROJECT_BINARY_DIR}/all.h
+       ${al_source_files}
+       )
+ 
+@@ -54,14 +53,6 @@ add_library(al ${MODULES_BUILD}
+ set_target_properties( al
+       PROPERTIES OUTPUT_NAME muse_al
+       )
+-set_source_files_properties(
+-      al.cpp
+-      dsp.cpp 
+-      dspXMM.cpp
+-      sig.cpp
+-      xml.cpp
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      )
+ set_source_files_properties(
+       dspSSE.cpp
+       PROPERTIES COMPILE_FLAGS "-x assembler"
+diff --git a/muse3/all.h b/muse3/all.h
+deleted file mode 100644
+index e0131593..00000000
+--- a/muse3/all.h
++++ /dev/null
+@@ -1,30 +0,0 @@
+-//=========================================================
+-//  MusE
+-//  Linux Music Editor
+-//  $Id: ./all.h $
+-//
+-//  Copyright (C) 1999-2011 by Werner Schweer and others
+-//
+-//  This program is free software; you can redistribute it and/or
+-//  modify it under the terms of the GNU General Public License
+-//  as published by the Free Software Foundation; version 2 of
+-//  the License, or (at your option) any later version.
+-//
+-//  This program is distributed in the hope that it will be useful,
+-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-//  GNU General Public License for more details.
+-//
+-//  You should have received a copy of the GNU General Public License
+-//  along with this program; if not, write to the Free Software
+-//  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-//
+-//=========================================================
+-
+-#ifndef __ALLQT_H__
+-#define __ALLQT_H__
+-
+-// Swept by Orcan
+-
+-#endif
+-
+diff --git a/muse3/awl/CMakeLists.txt b/muse3/awl/CMakeLists.txt
+index 9d624a7e..05cd7e72 100644
+--- a/muse3/awl/CMakeLists.txt
++++ b/muse3/awl/CMakeLists.txt
+@@ -113,8 +113,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( awl
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_awl
++      PROPERTIES OUTPUT_NAME muse_awl
+       )
+ 
+ ##
+diff --git a/muse3/libs/CMakeLists.txt b/muse3/libs/CMakeLists.txt
+index 7d433bf5..db5dc6e5 100644
+--- a/muse3/libs/CMakeLists.txt
++++ b/muse3/libs/CMakeLists.txt
+@@ -34,7 +34,6 @@ file (GLOB muse_string_source_files
+ ## Define target
+ ##
+ add_library(muse_string ${MODULES_BUILD}
+-      ${PROJECT_BINARY_DIR}/all-pic.h
+       ${muse_string_source_files}
+       )
+ 
+@@ -51,7 +50,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( muse_string
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all-pic.h"
++      PROPERTIES COMPILE_FLAGS ""
+       ## OUTPUT_NAME muse_helper_str
+       )
+ 
+diff --git a/muse3/muse.pro b/muse3/muse.pro
+index a082aa51..cadc3b00 100644
+--- a/muse3/muse.pro
++++ b/muse3/muse.pro
+@@ -278,7 +278,6 @@ HEADERS = \
+ 	./awl/volslider.h \
+ 	./awl/sigedit.h \
+ 	./awl/tcanvas.h \
+-	./all.h \
+  
+ 
+ SOURCES = \
+diff --git a/muse3/muse/CMakeLists.txt b/muse3/muse/CMakeLists.txt
+index 080b617d..13cc45a5 100644
+--- a/muse3/muse/CMakeLists.txt
++++ b/muse3/muse/CMakeLists.txt
+@@ -265,11 +265,9 @@ include_directories(
+ ## Compilation flags and target name
+ ##
+ set_target_properties( core
+-      # PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      # PROPERTIES COMPILE_FLAGS "-Imidiedit -Iarranger -Iliste -Iwidgets -Imixer -Idriver -Iwaveedit -Implugins -Iinstruments -Iremote ${REM_CPP_FLAGS} -include ${PROJECT_BINARY_DIR}/all.h "
+-      # PROPERTIES COMPILE_FLAGS "${REM_CPP_FLAGS} -DINSTPREFIX='\"${CMAKE_INSTALL_PREFIX}\"' -DINSTLIBDIR='\"${LIBRARY_OUTPUT_DIRECTORY}\"' -include ${PROJECT_BINARY_DIR}/all.h "
+-      PROPERTIES COMPILE_FLAGS "${VST_SDK_QUIRK} ${REM_CPP_FLAGS} -include ${PROJECT_BINARY_DIR}/all.h"
+-      
++      # PROPERTIES COMPILE_FLAGS "-Imidiedit -Iarranger -Iliste -Iwidgets -Imixer -Idriver -Iwaveedit -Implugins -Iinstruments -Iremote ${REM_CPP_FLAGS} "
++      # PROPERTIES COMPILE_FLAGS "${REM_CPP_FLAGS} -DINSTPREFIX='\"${CMAKE_INSTALL_PREFIX}\"' -DINSTLIBDIR='\"${LIBRARY_OUTPUT_DIRECTORY}\"' "
++      PROPERTIES COMPILE_FLAGS "${VST_SDK_QUIRK} ${REM_CPP_FLAGS} "
+       OUTPUT_NAME muse_core
+       )
+ set_target_properties( muse
+@@ -280,28 +278,22 @@ set_target_properties( icons
+       )
+ 
+ set_target_properties( sysex_helper_module
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_sysex_helper_module
++      PROPERTIES OUTPUT_NAME muse_sysex_helper_module
+       )
+ set_target_properties( memory_module
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_memory_module
++      PROPERTIES OUTPUT_NAME muse_memory_module
+       )
+ set_target_properties( evdata_module
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_evdata_module
++      PROPERTIES OUTPUT_NAME muse_evdata_module
+       )
+ set_target_properties( mpevent_module
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_mpevent_module
++      PROPERTIES OUTPUT_NAME muse_mpevent_module
+       )
+ set_target_properties( wavepreview_module
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_wavepreview_module
++      PROPERTIES OUTPUT_NAME muse_wavepreview_module
+       )
+ set_target_properties( xml_module
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_xml_module
++      PROPERTIES OUTPUT_NAME muse_xml_module
+       )
+       
+ ##
+diff --git a/muse3/muse/arranger/CMakeLists.txt b/muse3/muse/arranger/CMakeLists.txt
+index 622475b5..daca8607 100644
+--- a/muse3/muse/arranger/CMakeLists.txt
++++ b/muse3/muse/arranger/CMakeLists.txt
+@@ -63,8 +63,7 @@ set (FILES_TO_TRANSLATE
+ # Compilation flags and target name
+ #
+ set_target_properties( arranger
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_arranger
++      PROPERTIES OUTPUT_NAME muse_arranger
+       )
+ 
+ #
+diff --git a/muse3/muse/cliplist/CMakeLists.txt b/muse3/muse/cliplist/CMakeLists.txt
+index 66cf2e4f..25f09534 100644
+--- a/muse3/muse/cliplist/CMakeLists.txt
++++ b/muse3/muse/cliplist/CMakeLists.txt
+@@ -56,8 +56,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( cliplist
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_cliplist
++      PROPERTIES OUTPUT_NAME muse_cliplist
+       )
+ 
+ ##
+diff --git a/muse3/muse/ctrl/CMakeLists.txt b/muse3/muse/ctrl/CMakeLists.txt
+index b2d7ab55..7f8c3248 100644
+--- a/muse3/muse/ctrl/CMakeLists.txt
++++ b/muse3/muse/ctrl/CMakeLists.txt
+@@ -67,8 +67,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( ctrl
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_ctrl
++      PROPERTIES OUTPUT_NAME muse_ctrl
+       )
+ 
+ ##
+diff --git a/muse3/muse/driver/CMakeLists.txt b/muse3/muse/driver/CMakeLists.txt
+index 1c62bf69..0354095f 100644
+--- a/muse3/muse/driver/CMakeLists.txt
++++ b/muse3/muse/driver/CMakeLists.txt
+@@ -44,7 +44,6 @@ endif (HAVE_RTAUDIO)
+ ## Define target
+ ##
+ add_library ( driver ${MODULES_BUILD}
+-       # ${PROJECT_BINARY_DIR}/all.h.pch
+        ${driver_source_files}
+        )
+ 
+@@ -61,8 +60,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( driver
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_driver
++      PROPERTIES OUTPUT_NAME muse_driver
+       )
+ 
+ ##
+diff --git a/muse3/muse/instruments/CMakeLists.txt b/muse3/muse/instruments/CMakeLists.txt
+index 1877073d..be733525 100644
+--- a/muse3/muse/instruments/CMakeLists.txt
++++ b/muse3/muse/instruments/CMakeLists.txt
+@@ -69,8 +69,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( instruments
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_instruments
++      PROPERTIES OUTPUT_NAME muse_instruments
+       )
+ 
+ ##
+diff --git a/muse3/muse/liste/CMakeLists.txt b/muse3/muse/liste/CMakeLists.txt
+index 8e4e80f6..0c574e82 100644
+--- a/muse3/muse/liste/CMakeLists.txt
++++ b/muse3/muse/liste/CMakeLists.txt
+@@ -56,8 +56,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( liste
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_liste
++      PROPERTIES OUTPUT_NAME muse_liste
+       )
+ 
+ ##
+diff --git a/muse3/muse/lv2Gtk2Support/CMakeLists.txt b/muse3/muse/lv2Gtk2Support/CMakeLists.txt
+index 0f80f708..9b5f5c55 100644
+--- a/muse3/muse/lv2Gtk2Support/CMakeLists.txt
++++ b/muse3/muse/lv2Gtk2Support/CMakeLists.txt
+@@ -37,7 +37,7 @@ add_library ( lv2_gtk2_support ${MODULES_BUILD}
+ set_target_properties( lv2_gtk2_support
+       # Avoid treating warnings as errors here, unlike the rest of the app.
+       PROPERTIES COMPILE_FLAGS "-std=c++11 -Wno-error"
+-      # COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h -std=c++11"
++      # COMPILE_FLAGS "-std=c++11"
+       OUTPUT_NAME muse_lv2_gtk2_support
+       )
+ 
+diff --git a/muse3/muse/marker/CMakeLists.txt b/muse3/muse/marker/CMakeLists.txt
+index 01931e34..ddcf27bf 100644
+--- a/muse3/muse/marker/CMakeLists.txt
++++ b/muse3/muse/marker/CMakeLists.txt
+@@ -58,8 +58,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( marker
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_marker
++      PROPERTIES OUTPUT_NAME muse_marker
+       )
+ 
+ ##
+diff --git a/muse3/muse/master/CMakeLists.txt b/muse3/muse/master/CMakeLists.txt
+index 0b7c7b50..1c593913 100644
+--- a/muse3/muse/master/CMakeLists.txt
++++ b/muse3/muse/master/CMakeLists.txt
+@@ -62,8 +62,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( master
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_master
++      PROPERTIES OUTPUT_NAME muse_master
+       )
+ 
+ ##
+diff --git a/muse3/muse/midiedit/CMakeLists.txt b/muse3/muse/midiedit/CMakeLists.txt
+index 0f4f05ae..e44cc54f 100644
+--- a/muse3/muse/midiedit/CMakeLists.txt
++++ b/muse3/muse/midiedit/CMakeLists.txt
+@@ -84,8 +84,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( midiedit
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_midiedit
++      PROPERTIES OUTPUT_NAME muse_midiedit
+       )
+ 
+ ##
+diff --git a/muse3/muse/mixer/CMakeLists.txt b/muse3/muse/mixer/CMakeLists.txt
+index 24598e32..ef7f8f0d 100644
+--- a/muse3/muse/mixer/CMakeLists.txt
++++ b/muse3/muse/mixer/CMakeLists.txt
+@@ -78,8 +78,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties ( mixer
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_mixer
++      PROPERTIES OUTPUT_NAME muse_mixer
+       )
+ 
+ ##
+diff --git a/muse3/muse/mplugins/CMakeLists.txt b/muse3/muse/mplugins/CMakeLists.txt
+index dd5dc61d..419e3256 100644
+--- a/muse3/muse/mplugins/CMakeLists.txt
++++ b/muse3/muse/mplugins/CMakeLists.txt
+@@ -90,8 +90,7 @@ set (FILES_TO_TRANSLATE
+ #
+ set_target_properties ( mplugins
+       # PROPERTIES PREFIX ""
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_mplugins
++      PROPERTIES OUTPUT_NAME muse_mplugins
+       )
+ 
+ ##
+diff --git a/muse3/muse/remote/CMakeLists.txt b/muse3/muse/remote/CMakeLists.txt
+index c767dfb8..b3c46fb0 100644
+--- a/muse3/muse/remote/CMakeLists.txt
++++ b/muse3/muse/remote/CMakeLists.txt
+@@ -48,7 +48,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( remote
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h -I${PYTHON_INCLUDE_DIRS} -DENABLE_PYTHON"
++      PROPERTIES COMPILE_FLAGS "-I${PYTHON_INCLUDE_DIRS} -DENABLE_PYTHON"
+       OUTPUT_NAME muse_remote
+       )
+ 
+diff --git a/muse3/muse/waveedit/CMakeLists.txt b/muse3/muse/waveedit/CMakeLists.txt
+index ebe122d4..9fba260b 100644
+--- a/muse3/muse/waveedit/CMakeLists.txt
++++ b/muse3/muse/waveedit/CMakeLists.txt
+@@ -70,8 +70,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( waveedit
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h"
+-      OUTPUT_NAME muse_waveedit
++      PROPERTIES OUTPUT_NAME muse_waveedit
+       )
+ 
+ ##
+diff --git a/muse3/muse/widgets/CMakeLists.txt b/muse3/muse/widgets/CMakeLists.txt
+index f629f09d..51551aba 100644
+--- a/muse3/muse/widgets/CMakeLists.txt
++++ b/muse3/muse/widgets/CMakeLists.txt
+@@ -299,8 +299,8 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( widgets
+-      # PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h ${MUSECXXFLAGS} -I../ -I${PROJECT_SOURCE_DIR}/synti "
+-      PROPERTIES COMPILE_FLAGS "${VST_SDK_QUIRK} -include ${PROJECT_BINARY_DIR}/all.h ${MUSECXXFLAGS} -I../ -I${PROJECT_SOURCE_DIR}/synti"
++      # PROPERTIES COMPILE_FLAGS "${MUSECXXFLAGS} -I../ -I${PROJECT_SOURCE_DIR}/synti "
++      PROPERTIES COMPILE_FLAGS "${VST_SDK_QUIRK} ${MUSECXXFLAGS} -I../ -I${PROJECT_SOURCE_DIR}/synti"
+       OUTPUT_NAME muse_widgets
+       )
+ 
+diff --git a/muse3/muse/widgets/function_dialogs/CMakeLists.txt b/muse3/muse/widgets/function_dialogs/CMakeLists.txt
+index 8c22920d..991333d5 100644
+--- a/muse3/muse/widgets/function_dialogs/CMakeLists.txt
++++ b/muse3/muse/widgets/function_dialogs/CMakeLists.txt
+@@ -94,8 +94,8 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( widgets_functiondialogs
+-      # PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h ${MUSECXXFLAGS} -I../ -I${PROJECT_SOURCE_DIR}/synti "
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all.h ${MUSECXXFLAGS} -I../ -I${PROJECT_SOURCE_DIR}/synti"
++      # PROPERTIES COMPILE_FLAGS "${MUSECXXFLAGS} -I../ -I${PROJECT_SOURCE_DIR}/synti "
++      PROPERTIES COMPILE_FLAGS "${MUSECXXFLAGS} -I../ -I${PROJECT_SOURCE_DIR}/synti"
+       OUTPUT_NAME muse_widgets_functiondialogs
+       )
+ 
+diff --git a/muse3/pch.txt b/muse3/pch.txt
+index ff262b6e..5a90b4a0 100644
+--- a/muse3/pch.txt
++++ b/muse3/pch.txt
+@@ -18,12 +18,6 @@
+ #  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ #=============================================================================
+ 
+-file (COPY ${PROJECT_SOURCE_DIR}/all.h DESTINATION ${PROJECT_BINARY_DIR})
+-file (RENAME ${PROJECT_BINARY_DIR}/all.h ${PROJECT_BINARY_DIR}/all-pic.h)
+-
+-file (COPY ${PROJECT_SOURCE_DIR}/all.h DESTINATION ${PROJECT_BINARY_DIR})
+-
+-      
+ # Disable precompilation of this header file for now since it is empty - Orcan 2012-05-20
+ if(0)
+ add_custom_command(
+@@ -54,10 +48,4 @@ add_custom_command(
+       )
+ endif(0)
+ 
+-set_source_files_properties(
+-      ${PROJECT_BINARY_DIR}/all.h
+-      ${PROJECT_BINARY_DIR}/all.h.pch
+-      ${PROJECT_BINARY_DIR}/all-pic.h.pch
+-      PROPERTIES generated true
+-      )
+ 
+diff --git a/muse3/synti/deicsonze/CMakeLists.txt b/muse3/synti/deicsonze/CMakeLists.txt
+index 303bbda7..39b741f5 100644
+--- a/muse3/synti/deicsonze/CMakeLists.txt
++++ b/muse3/synti/deicsonze/CMakeLists.txt
+@@ -83,8 +83,8 @@ set (FILES_TO_TRANSLATE
+ #
+ set_target_properties ( deicsonze
+       PROPERTIES PREFIX ""
+-      #COMPILE_FLAGS "-O2 -include ${PROJECT_BINARY_DIR}/all-pic.h"
+-      COMPILE_FLAGS "-fvisibility=hidden -include ${PROJECT_BINARY_DIR}/all-pic.h"
++      #COMPILE_FLAGS "-O2 -include"
++      COMPILE_FLAGS "-fvisibility=hidden"
+       )
+ 
+ ##
+diff --git a/muse3/synti/fluid/CMakeLists.txt b/muse3/synti/fluid/CMakeLists.txt
+index 3789a745..4ebfdf10 100644
+--- a/muse3/synti/fluid/CMakeLists.txt
++++ b/muse3/synti/fluid/CMakeLists.txt
+@@ -72,7 +72,7 @@ set (FILES_TO_TRANSLATE
+ #
+ set_target_properties ( fluid
+       PROPERTIES PREFIX ""
+-      COMPILE_FLAGS "-fvisibility=hidden -include ${PROJECT_BINARY_DIR}/all-pic.h"
++      COMPILE_FLAGS "-fvisibility=hidden"
+       )
+ 
+ ##
+diff --git a/muse3/synti/fluidsynth/CMakeLists.txt b/muse3/synti/fluidsynth/CMakeLists.txt
+index 988131dd..bda1a664 100644
+--- a/muse3/synti/fluidsynth/CMakeLists.txt
++++ b/muse3/synti/fluidsynth/CMakeLists.txt
+@@ -84,7 +84,7 @@ set (FILES_TO_TRANSLATE
+ #
+ set_target_properties ( fluid_synth 
+       PROPERTIES PREFIX ""
+-      COMPILE_FLAGS "-fvisibility=hidden -include ${PROJECT_BINARY_DIR}/all-pic.h"
++      COMPILE_FLAGS "-fvisibility=hidden"
+       )
+ 
+ ##
+diff --git a/muse3/synti/libsimpleplugin/CMakeLists.txt b/muse3/synti/libsimpleplugin/CMakeLists.txt
+index 81402c6d..9bbf3d51 100644
+--- a/muse3/synti/libsimpleplugin/CMakeLists.txt
++++ b/muse3/synti/libsimpleplugin/CMakeLists.txt
+@@ -49,13 +49,11 @@ file (GLOB simpler_plugin_source_files
+ ## Define target
+ ##
+ add_library ( simpler_plugingui SHARED   ## ${MODULES_BUILD}
+-      ${PROJECT_BINARY_DIR}/all-pic.h
+       ${simpler_plugingui_source_files}
+       ${simpler_plugingui_mocs}
+       ${simpler_plugingui_uis}
+       )
+ add_library ( simpler_plugin SHARED   ## ${MODULES_BUILD}
+-      ${PROJECT_BINARY_DIR}/all-pic.h
+       ${simpler_plugin_source_files}
+       )
+       
+@@ -74,12 +72,10 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( simpler_plugingui
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all-pic.h"
+-      OUTPUT_NAME muse_simpler_plugingui
++      PROPERTIES OUTPUT_NAME muse_simpler_plugingui
+       )
+ set_target_properties( simpler_plugin
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all-pic.h"
+-      OUTPUT_NAME muse_simpler_plugin
++      PROPERTIES OUTPUT_NAME muse_simpler_plugin
+       )
+       
+ ##
+diff --git a/muse3/synti/libsynti/CMakeLists.txt b/muse3/synti/libsynti/CMakeLists.txt
+index a9c3e7d6..505e1a1d 100644
+--- a/muse3/synti/libsynti/CMakeLists.txt
++++ b/muse3/synti/libsynti/CMakeLists.txt
+@@ -44,7 +44,6 @@ file (GLOB synti_source_files
+ ## Define target
+ ##
+ add_library(synti ${MODULES_BUILD}
+-      ${PROJECT_BINARY_DIR}/all-pic.h
+       ${mess_mocs}
+       ${synti_source_files}
+       )
+@@ -66,8 +65,7 @@ set (FILES_TO_TRANSLATE
+ ## Compilation flags and target name
+ ##
+ set_target_properties( synti
+-      PROPERTIES COMPILE_FLAGS "-include ${PROJECT_BINARY_DIR}/all-pic.h"
+-      OUTPUT_NAME muse_synti
++      PROPERTIES OUTPUT_NAME muse_synti
+       )
+ 
+ ##
+diff --git a/muse3/synti/organ/CMakeLists.txt b/muse3/synti/organ/CMakeLists.txt
+index 922a67ea..5b0fa1bf 100644
+--- a/muse3/synti/organ/CMakeLists.txt
++++ b/muse3/synti/organ/CMakeLists.txt
+@@ -70,7 +70,7 @@ set (FILES_TO_TRANSLATE
+ #
+ set_target_properties ( organ
+       PROPERTIES PREFIX ""
+-      COMPILE_FLAGS "-fvisibility=hidden -include ${PROJECT_BINARY_DIR}/all-pic.h"
++      COMPILE_FLAGS "-fvisibility=hidden"
+       )
+ 
+ ##
+diff --git a/muse3/synti/simpledrums2/CMakeLists.txt b/muse3/synti/simpledrums2/CMakeLists.txt
+index cf5952ad..f7beae2d 100644
+--- a/muse3/synti/simpledrums2/CMakeLists.txt
++++ b/muse3/synti/simpledrums2/CMakeLists.txt
+@@ -81,7 +81,7 @@ set (FILES_TO_TRANSLATE
+ 
+ set_target_properties ( simpledrums
+       PROPERTIES PREFIX ""
+-      COMPILE_FLAGS "-fvisibility=hidden -include ${PROJECT_BINARY_DIR}/all-pic.h"
++      COMPILE_FLAGS "-fvisibility=hidden"
+       )
+ 
+ ##
+diff --git a/muse3/synti/vam/CMakeLists.txt b/muse3/synti/vam/CMakeLists.txt
+index 9a88b116..348eb3d9 100644
+--- a/muse3/synti/vam/CMakeLists.txt
++++ b/muse3/synti/vam/CMakeLists.txt
+@@ -72,7 +72,7 @@ set (FILES_TO_TRANSLATE
+ #
+ set_target_properties ( vam 
+       PROPERTIES PREFIX ""
+-      COMPILE_FLAGS "-fvisibility=hidden -include ${PROJECT_BINARY_DIR}/all-pic.h"
++      COMPILE_FLAGS "-fvisibility=hidden"
+       )
+ 
+ ##

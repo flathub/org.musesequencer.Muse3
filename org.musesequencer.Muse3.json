@@ -275,12 +275,12 @@
         {
           "type": "patch",
           "strip-components": 2,
-          "path": "patches/appdata-validate.patch"
+          "path": "patches/muse-no-all.patch"
         },
         {
           "type": "patch",
           "strip-components": 2,
-          "path": "patches/muse-no-all.patch"
+          "path": "patches/muse-appdata.patch"
         },
         {
           "type": "file",

@@ -1,0 +1,42 @@
+commit 7c7a15eb33f5ab5da11c66cba825d86a9f757246
+Author: Hubert Figuière <hub@figuiere.net>
+Date:   Sat Oct 5 20:31:15 2019 -0400
+
+    Make appdata validate for flathub:
+    
+    -added oars tag
+    -added release info
+
+diff --git a/muse3/packaging/muse.appdata.xml b/muse3/packaging/muse.appdata.xml
+index e8484d2f..0c260b4a 100644
+--- a/muse3/packaging/muse.appdata.xml
++++ b/muse3/packaging/muse.appdata.xml
+@@ -7,6 +7,7 @@
+   <name>MusE</name>
+   <summary>The open source sequencer</summary>
+   <translation/>
++  <content_rating type="oars-1.1" />
+   <description>
+     <p>
+       MusE is a MIDI/Audio sequencer with recording and editing capabilities. It can
+@@ -31,4 +32,20 @@
+   </screenshots>
+   <url type="homepage">http://muse-sequencer.org/</url>
+   <update_contact>lmuse-user_at_lists.sourceforge.net</update_contact>
++  <releases>
++    <release version="3.0.2" date="2018-01-30">
++      <url>https://github.com/muse-sequencer/muse/blob/muse_3_0_2/muse3/ChangeLog</url>
++      <description>
++        <p>This release fixes many bugs</p>
++        <ul>
++          <li>Fix crashes when selecting MIDI devices</li>
++          <li>Issue #604 - build failure fixes</li>
++          <li>Added appdata file</li>
++          <li>Added ability to not specify a default out, instead a created midi track
++          defaults to the port with highest number (usually the last created)
++          this is also the default behaviour now</li>
++        </ul>
++      </description>
++    </release>
++  </releases>
+ </component>

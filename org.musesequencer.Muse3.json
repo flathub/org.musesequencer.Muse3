@@ -258,6 +258,11 @@
           "type": "patch",
           "strip-components": 2,
           "path": "patches/muse-no-all.patch"
+        },
+        {
+          "type": "patch",
+          "strip-components": 2,
+          "path": "patches/muse-appdata.patch"
         }
       ]
     }

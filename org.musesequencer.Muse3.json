@@ -151,7 +151,10 @@
       "name": "rtaudio",
       "config-opts": [
         "--disable-static",
-        "--enable-shared"
+        "--enable-shared",
+        "--with-alsa",
+        "--with-pulse",
+        "--with-jack=no"
       ],
       "sources": [
         {

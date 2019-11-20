@@ -19,15 +19,44 @@ index 1ff4e498..2c08939b 100644
    <description>
      <p>
        MusE is a MIDI/Audio sequencer with recording and editing capabilities. It can
-@@ -31,4 +32,59 @@
+@@ -31,4 +32,88 @@
    </screenshots>
    <url type="homepage">http://muse-sequencer.org/</url>
    <update_contact>lmuse-user_at_lists.sourceforge.net</update_contact>
 +  <releases>
-+    <release version="3.1.0-beta1" date="2019-02-25">
++    <release version="3.1.0-pre3" date="2019-11-12">
++      <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0_pre3/muse3/ChangeLog</url>
++      <description>
++       <p>The third pre-release for 3.1.0.</p>
++       <ul>
++         <li>MusE config files and names have changed!</li>
++         <li>New! Comprehensive full midi and audio latency correction / compensation</li>
++         <li>Metronome super-makeover</li>
++         <li>LV2 Major rewrite of state/worker support and more, fixes several synths</li>
++         <li>Mixer and strips - Save entire state</li>
++         <li>Midi Editor now keeps state (zoom, pos, controllers) after closing</li>
++         <li>New! Restored Python remote control</li>
++         <li>Added tab in Aboutbox with some runtime diagnostics of MusE</li>
++         <li>Add: Tooltip for current note/instrument in the midi editors</li>
++         <li>New - Instrument can now be changed on a Synth Track</li>
++         <li>Implemented issue 644: Rewind on stop</li>
++         <li>Fix issue 667: Hang on automatic restart. Reset jackStarted upon restart</li>
++         <li>Fix issue 638: Font too small in popups started from mixer strip</li>
++         <li>Add: Double click on track ID selects all tracks of the same type</li>
++         <li>New: Persistent synth tracks. Tracks are preserved even if synth is not found</li>
++         <li>LV2: Fix plugins using worker extension, such as *v1 suite (drumkv1 etc.)</li>
++         <li>LV2: Removed ALL internal LV2 support. Too hard to maintain</li>
++         <li>Fixes for BSD support</li>
++         <li>Fixed midi import problem as reported in forums</li>
++         <li>Fixed Midi Input Transformator and Midi Transformator problems</li>
++         <li>Fix LinuxVST duplicates in plugin list if duplicate plugins exist</li>
++       </ul>
++      </description>
++    </release>
++    <release version="3.1.0-pre1" date="2019-02-25">
 +      <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0_pre1/muse3/ChangeLog</url>
 +      <description>
-+        <p>The first beta release of 3.1.0</p>
++        <p>The first pre-release of 3.1.0.</p>
 +        <ul>
 +          <li>Added cosmetic highlight lines in arranger for every numbered line</li>
 +          <li>Added shortcut for renaming a part</li>
@@ -66,7 +95,7 @@ index 1ff4e498..2c08939b 100644
 +    <release version="3.0.2" date="2018-01-30">
 +      <url>https://github.com/muse-sequencer/muse/blob/muse_3_0_2/muse3/ChangeLog</url>
 +      <description>
-+        <p>This release fixes many bugs</p>
++        <p>This release fixes many bugs.</p>
 +        <ul>
 +          <li>Fix crashes when selecting MIDI devices</li>
 +          <li>Issue #604 - build failure fixes</li>

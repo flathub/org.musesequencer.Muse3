@@ -262,6 +262,118 @@
       ]
     },
     {
+      "name": "lv2",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python2 ./waf configure --prefix=/app --lv2dir=/app/lib/lv2 --copy-headers",
+        "python2 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
+        "python2 ./waf install"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://lv2plug.in/spec/lv2-1.14.0.tar.bz2",
+          "sha256": "b8052683894c04efd748c81b95dd065d274d4e856c8b9e58b7c3da3db4e71d32"
+        }
+      ],
+      "post-install": [
+        "install -Dm644 -t /app/share/licenses/lv2 COPYING"
+      ],
+      "cleanup": [
+        "/bin",
+        "/share/lv2specgen"
+      ]
+    },
+    {
+      "name": "serd",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python3 ./waf configure --prefix=/app",
+        "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
+        "python3 ./waf install"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://download.drobilla.net/serd-0.30.0.tar.bz2",
+          "sha256": "6efb0efa5c2155e6bbac941cddeeabb7ed26d70a57d24178894ff169d8f6cefb"
+        }
+      ],
+      "post-install": [
+        "install -Dm644 -t /app/share/licenses/serd COPYING"
+      ],
+      "cleanup": [
+        "/bin",
+        "/share/man"
+      ]
+    },
+    {
+      "name": "sord",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python3 ./waf configure --prefix=/app",
+        "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
+        "python3 ./waf install"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://download.drobilla.net/sord-0.16.2.tar.bz2",
+          "sha256": "09f51174dd8f3efbd95f44f0bb0b165f08e066e052d40095de59de787987da8d"
+        }
+      ],
+      "post-install": [
+        "install -Dm644 -t /app/share/licenses/sord COPYING"
+      ],
+      "cleanup": [
+        "/bin",
+        "/share/man"
+      ]
+    },
+    {
+      "name": "sratom",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python3 ./waf configure --prefix=/app",
+        "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
+        "python3 ./waf install"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://download.drobilla.net/sratom-0.6.2.tar.bz2",
+          "sha256": "0a514a55d6b6cb7b5d6f32d1dcb78a1e6e54537fa22fce533e4ef6adf240e853"
+        }
+      ],
+      "post-install": [
+        "install -Dm644 -t /app/share/licenses/sratom COPYING"
+      ]
+    },
+    {
+      "name": "lilv",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python3 ./waf configure --prefix=/app",
+        "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
+        "python3 ./waf install"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://download.drobilla.net/lilv-0.24.4.tar.bz2",
+          "sha256": "c33b84b7a6e8e8fffb412fbcd6f69e59ca297ef3e29d829249b4ccc94f634438"
+        }
+      ],
+      "post-install": [
+        "install -Dm644 -t /app/share/licenses/lilv COPYING"
+      ],
+      "cleanup": [
+        "/bin",
+        "/etc",
+        "/share/man"
+      ]
+    },
+    {
       "name": "muse3",
       "buildsystem": "cmake-ninja",
       "config-opts": [
@@ -278,18 +390,13 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/lmuse/muse-3.1/muse-3.1.0pre1.tar.gz",
-          "sha256": "510eb5e47cae8c9eb26a8526cb850bf77b2791aa3423220a316c1bcd03ec7810"
+          "url": "https://downloads.sourceforge.net/project/lmuse/muse-3.1/muse-3.1pre3.tar.gz",
+          "sha256": "322648d35d4c5eb3fa5baa1b004da1ee127c364b761880217424400ffcc58289"
         },
         {
           "type": "patch",
           "strip-components": 2,
           "path": "patches/muse-cmake-gtk2.patch"
-        },
-        {
-          "type": "patch",
-          "strip-components": 2,
-          "path": "patches/muse-no-all.patch"
         },
         {
           "type": "patch",

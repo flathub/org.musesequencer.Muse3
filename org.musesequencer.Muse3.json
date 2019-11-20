@@ -58,6 +58,8 @@
         "./waf install"
       ],
       "cleanup": [
+        "/include",
+        "/lib/pkgconfig",
         "/share"
       ],
       "sources": [
@@ -108,6 +110,9 @@
         "--disable-static",
         "--disable-serv-inst",
         "CFLAGS=-D_GNU_SOURCE"
+      ],
+      "cleanup": [
+        "/include"
       ],
       "sources": [
         {
@@ -166,6 +171,11 @@
             "--without-python",
             "--disable-static"
           ],
+          "cleanup": [
+            "/bin",
+            "/include",
+            "/lib/xml2Conf.sh"
+          ],
           "sources": [
             {
               "type": "archive",
@@ -178,6 +188,9 @@
           "name": "raptor2",
           "config-opts": [
             "--disable-static"
+          ],
+          "cleanup": [
+            "/include"
           ],
           "sources": [
             {
@@ -206,6 +219,10 @@
     },
     {
       "name": "liblo",
+      "cleanup": [
+        "/include",
+        "/lib/pkgconfig"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -221,7 +238,8 @@
         "--disable-static"
       ],
       "cleanup": [
-        "/bin"
+        "/bin",
+        "/include"
       ],
       "sources": [
         {
@@ -241,6 +259,9 @@
     {
       "name": "libinstpatch",
       "rm-configure": true,
+      "cleanup": [
+        "/include"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -269,6 +290,10 @@
         "python2 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
         "python2 ./waf install"
       ],
+      "cleanup": [
+        "/include",
+        "/lib/pkgconfig"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -291,6 +316,9 @@
         "python3 ./waf configure --prefix=/app",
         "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
         "python3 ./waf install"
+      ],
+      "cleanup": [
+        "/include"
       ],
       "sources": [
         {
@@ -327,6 +355,7 @@
       ],
       "cleanup": [
         "/bin",
+        "/include",
         "/share/man"
       ]
     },
@@ -337,6 +366,9 @@
         "python3 ./waf configure --prefix=/app",
         "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
         "python3 ./waf install"
+      ],
+      "cleanup": [
+        "/include"
       ],
       "sources": [
         {
@@ -356,6 +388,9 @@
         "python3 ./waf configure --prefix=/app",
         "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
         "python3 ./waf install"
+      ],
+      "cleanup": [
+        "/include"
       ],
       "sources": [
         {

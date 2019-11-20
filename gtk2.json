@@ -7,6 +7,11 @@
       "config-opts" : [
         "--disable-documentation"
       ],
+      "cleanup": [
+        "/include",
+        "/lib/sigc++2.0",
+        "/lib/pkgconfig"
+      ],
       "sources" : [
         {
           "type" : "archive",
@@ -19,6 +24,11 @@
       "name": "cairomm",
       "config-opts" : [
         "--disable-documentation"
+      ],
+      "cleanup": [
+        "/include",
+        "/lib/cairomm-1.0",
+        "/lib/pkgconfig"
       ],
       "sources": [
         {
@@ -33,6 +43,11 @@
       "config-opts" : [
         "--disable-documentation"
       ],
+      "cleanup": [
+        "/include",
+        "/lib/glibmm-2.4",
+        "/lib/pkgconfig"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -45,6 +60,11 @@
       "name": "pangomm",
       "config-opts" : [
         "--disable-documentation"
+      ],
+      "cleanup": [
+        "/include",
+        "/lib/pangomm-1.4",
+        "/lib/pkgconfig"
       ],
       "sources": [
         {
@@ -59,6 +79,11 @@
       "config-opts" : [
         "--disable-documentation"
       ],
+      "cleanup": [
+        "/include",
+        "/lib/atkmm-1.6",
+        "/lib/pkgconfig"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -70,6 +95,11 @@
   ],
   "config-opts" : [
     "--disable-documentation"
+  ],
+  "cleanup": [
+    "/include",
+    "/lib/gtkmm-2.4",
+    "/lib/pkgconfig"
   ],
   "sources": [
     {

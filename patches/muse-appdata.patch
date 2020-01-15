@@ -1,14 +1,15 @@
-commit eda6b0cee76351bf896795c1d172e01101977d71
+commit b67c317487637bff36f73f7123b92c43183f8232
 Author: Hubert Figuière <hub@figuiere.net>
-Date:   Sat Oct 5 20:31:15 2019 -0400
+Date:   Wed Jan 15 18:21:59 2020 -0500
 
-    Make appdata validate for flathub:
+    appdata fixes
     
-    -added oars tag
-    -added release info
+    - update image links
+    - oars
+    - changelong
 
 diff --git a/muse3/packaging/org.musesequencer.Muse3.appdata.xml b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
-index 1ff4e498..2c08939b 100644
+index 1ff4e498..6a5ba4d2 100644
 --- a/muse3/packaging/org.musesequencer.Muse3.appdata.xml
 +++ b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
 @@ -7,6 +7,7 @@
@@ -19,11 +20,170 @@ index 1ff4e498..2c08939b 100644
    <description>
      <p>
        MusE is a MIDI/Audio sequencer with recording and editing capabilities. It can
-@@ -31,4 +32,88 @@
+@@ -17,18 +18,243 @@
+   </description>
+   <screenshots>
+     <screenshot type="default">
+-      <image>http://www.muse-sequencer.org/pic/mypics/muse2.1/muse2.1_song.png</image>
++      <image>https://muse-sequencer.github.io/img/arranger1.png</image>
+     </screenshot>
+     <screenshot>
+-      <image>http://www.muse-sequencer.org/pic/mypics/muse2.0/main_window_with_midi_editor.png</image>
++      <image>https://muse-sequencer.github.io/img/midi1.png</image>
+     </screenshot>
+     <screenshot>
+-      <image>http://www.muse-sequencer.org/pic/mypics/muse2.0/main_window_with_tracks.png</image>
++      <image>https://muse-sequencer.github.io/img/drum2.png</image>
+     </screenshot>
+     <screenshot>
+-      <image>http://www.muse-sequencer.org/pic/mypics/muse2.0/mixer.png</image>
++      <image>https://muse-sequencer.github.io/img/wave.png</image>
++    </screenshot>
++    <screenshot>
++      <image>https://muse-sequencer.github.io/img/mixer1.png</image>
+     </screenshot>
    </screenshots>
    <url type="homepage">http://muse-sequencer.org/</url>
    <update_contact>lmuse-user_at_lists.sourceforge.net</update_contact>
 +  <releases>
++    <release version="3.1.0-pre4" date="2019-12-11">
++      <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0_pre4/muse3/ChangeLog</url>
++      <description>
++        <p>The third pre-release for 3.1.0.</p>
++        <ul>
++          <li>Customizable size of icons and custom tool cursors (kybos)</li>
++          <li>Replaced one-letter column headers by icons in track header (kybos)</li>
++          <li>German translation updated (kybos)</li>
++          <li>Build issues:
++          <ul>
++            <li>Dependency problems: Moved several files. All source together with ui files now. (Tim)</li>
++            <li>Remove all dead obsolete trackinfo 'alt' button code.</li>
++            <li>Fix some compile warnings with LV2 worker functions, some others. (Tim)</li>
++            <li>Moved appearance and confmport cpp/h files from /muse
++            to muse/components. Trying to solve some dependency
++            problems...</li>
++          </ul>
++          </li>
++          <li>FIXED: Mixer strips missing if loading an older song saved before 20.10.2019</li>
++          <li>FIXED: Duplicate strips found in songs saved before 20.10.2019</li>
++          <li>FIXED: Long-time mixer problem with restoring size</li>
++          <li>Remove some more "old vs. new" drum track stuff, change
++          some text etc. (Tim)</li>
++          <li>Added option for opening MDI subwindows maximized (kybos)</li>
++          <li>Fix gross misnomer throughout, should be "timebase
++          master, not "transport master"</li>
++          <li>Fix EffectRack::songChanged() crash when reloading
++          songs: Check track still exists. (Tim)</li>
++          <li>Update start play position when making a seek. Rewind to
++          Start behaves more logical then, imho (rj)</li>
++          <li>Fixed bug #719 downmix to existing file appends to the old file (rj)</li>
++          <li>Transport master fixes: New button on transport. Fix
++          connect at startup etc. (Tim) Seems there is no way to ask
++          Jack if are we transport master (without setting it).  So
++          new code in our Jack driver - and a 1Hz watchdog - monitor
++          for changes to master status.  Care was taken to not disturb
++          who else may be master. Click flashing button to force.
++          Tested the new button OK with three instances of MusE
++          competing for transport master.</li>
++          <li>Added File->New from template... menu entry. File->New
++          loads default template (kybos)</li>
++          <li>Fixed inconsistent UI texts where appropriate: (kybos)
++            <ul>
++              <li>Title-style for menu texts and window titles</li>
++              <li>Sentence-style for all other UI texts</li>
++              <li>Three dots (...) for menu entries triggering a dialog (like Save As...)</li>
++            </ul>
++          </li>
++          <li>Fixed inconsistent tooltip font size (kybos)</li>
++          <li>Vector replacements for many pixmap icons (kybos)</li>
++          <li>Fixed bug #720 arm follows track did bad things while recording (rj)</li>
++          <li>Eliminated all but one tr("Empty") string usage in
++          plugins/pipeline/rack. (Tim)</li>
++          <li>Snooper: Provide flashColor property. Changed it in
++          Ardour and Dark qss themes.</li>
++          <li>Added a specialization of QMdiArea to work around
++          problems with PgUp and PgDown shortcuts as it was found
++          through Snooper tool that this is the widget that was
++          stealing the keypresses.</li>
++          <li>Another keypress fix in pcanvas.cpp to allow Return to be captured</li>
++          <li>Fixed a crash in drumlist when using a drummap and
++          opening without the port having been properly initialized
++          (in this case the synth plugin was missing). The dm->port
++          had an extreme value, now the range is checked. (rj)</li>
++          <li>Fix #697: On HiDPI displays, plugin native UI windows
++          are automatically scaled by Qt, but most of the native
++          plugin UIs are not scalable or apply their own
++          scaling. There is now a global setting for reverting the Qt
++          window scaling. It can be overridden for each soft synth
++          track by a local setting in the Quirks toolbar. (kybos)</li>
++          <li>Fix # 708: Surge-vst crashes. It called our
++          pluginHostCallback() immediately from instantiate() before
++          we stored the pointer. Added VstNativeSynth::openPlugin()
++          (Tim)</li>
++          <li>Fixed the DidYouKnow menu alternative so it shows the
++          dialog even if the checkbox for not displaying it is
++          checked. (rj)</li>
++          <li>Added a few more lines to the DidYouKnow.txt database</li>
++          <li>Snooper improvements, fix crashes, fix 'parented top
++          level' not working right. (Tim)</li>
++          <li>Unfortunately had to revoke the 'easy fix' below for
++          getting more shortcuts to work there were side effects...
++          The search goes on for the 'real' solution (rj)</li>
++          <li>Snooper improvements. Moved to Help menu. Live realtime
++          monitoring of events. (Tim)</li>
++          <li>New - Introducing the Snooper (object tree) for coders
++          and stylesheet authors: (Tim) Click new Snooper button in
++          Appearance to start. Then click on anything anywhere</li>
++          <li> More keyboard shortcuts
++            <ul>
++              <li>First of, I found out that several shortcuts never end
++              up in the dispatcher since they (rj) were tested against
++              the "accepted" property. Seems this is not reliable nor
++              needed, it affected atleast PgUp, PgDn and Return.</li>
++              <li>Arm currently selected track can now be bound: Default
++              Ctrl+Return</li>
++              <li>Goto end of song can be bound: Shift+W</li>
++            </ul>
++          </li>
++          <li>New solution to making bar lines more visible. Basically
++          removed more hardcoded colors and made them configurable in
++          the appearance dialog (rj)</li>
++          <li>Fixed escape-key shortcut for closing a few more dialogs/editors:
++          master track list/graphical, instrument editor (rj)</li>
++          <li>Advanced router stylesheet support: New property
++          'RouteTreeWidget::categoryColor'. (Tim) Also specific
++          instance IDs Router_input_tree and Router_output_tree, if
++          desired.</li>
++          <li>Add command line option -C "Do not re-create plugin
++          cache."  (Tim) Avoids (looong) repeated re-creations in some
++          cases. Helps devs avoid after rebuilds.</li>
++          <li>Soundfont *.sf3 files: Small tweak allows our MESS
++          fluidsynth to load them. (Tim)</li>
++          <li>Add dedicated new 'mute parts' svg icon, for 17.11 (Tim)</li>
++          <li>Bug 681: Fix multichannel track feeding aux track, no
++          audio. In AudioTrack::copyData().</li>
++          <li>Fixed metronome selection of wave files, the selection
++          in the ui did not actually do anything. (rj)</li>
++          <li>Introduce new scalable icons and cursors for edit tools
++          (kybos) Improved cursor interaction in piano roll/drum
++          editor (event canvas vs. control canvas), cursor shape shows
++          when cursor has no function in given area Consistent cursor
++          shape display in all editors affected (midi, part, score,
++          master, wave) Correct cursor size on HiDPI screens (fixes
++          issue #637)</li>
++          <li>LV2: Fix sequencing/syncing plugins (Helm, LV2
++          metronome, NoiseMak3r...) (Tim) Fixed TimePosition
++          usage. Add quirks class for different plugin behaviour
++          observed.</li>
++          <li>Generic plugin UI: Added 'Quirks' buttons to toolbar:
++          "fixed speed" (fixes NoiseMak3r modulator stuck in small
++          loop in stop mode for ex.), "transport affects latency"
++          (self-correcting LV2 Example Metronome for ex.), and
++          "override reported latency" (for plugins with broken or
++          inaccurate latency reporting).</li>
++        </ul>
++      </description>
++    </release>
 +    <release version="3.1.0-pre3" date="2019-11-12">
 +      <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0_pre3/muse3/ChangeLog</url>
 +      <description>

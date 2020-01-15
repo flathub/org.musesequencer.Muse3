@@ -423,22 +423,23 @@
         ]
       },
       "post-install": [
-        "install -Dm555 -t /app/bin muse3_wrap.sh"
+        "install -Dm555 -t /app/bin ../muse3_wrap.sh"
       ],
+      "subdir": "muse3",
       "sources": [
         {
           "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/lmuse/muse-3.1/muse-3.1pre3.tar.gz",
-          "sha256": "322648d35d4c5eb3fa5baa1b004da1ee127c364b761880217424400ffcc58289"
+          "url": "https://github.com/muse-sequencer/muse/archive/muse_3_1_0_pre4.tar.gz",
+          "sha256": "5337d5dbb26c8b35216f2dda4bc7c3bee92ff01dfa48061c052125785888ef7c"
         },
         {
           "type": "patch",
-          "strip-components": 2,
+          "strip-components": 1,
           "path": "patches/muse-cmake-gtk2.patch"
         },
         {
           "type": "patch",
-          "strip-components": 2,
+          "strip-components": 1,
           "path": "patches/muse-appdata.patch"
         },
         {

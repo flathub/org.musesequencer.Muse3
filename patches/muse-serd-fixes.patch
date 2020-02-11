@@ -1,0 +1,14 @@
+diff --git a/muse3/muse/lv2Support/serd-0.22.0/src/serd_internal.h b/muse3/muse/lv2Support/serd-0.22.0/src/serd_internal.h
+index b85965dd..15fe508f 100644
+--- a/muse3/muse/lv2Support/serd-0.22.0/src/serd_internal.h
++++ b/muse3/muse/lv2Support/serd-0.22.0/src/serd_internal.h
+@@ -290,7 +290,8 @@ serd_error(SerdErrorSink error_sink, void* handle, const SerdError* e)
+ 	if (error_sink) {
+ 		error_sink(handle, e);
+ 	} else {
+-		fprintf(stderr, "error: %s:%u:%u: ", e->filename, e->line, e->col);
++		const char* filename = e->filename ? (const char*)e->filename : "(null)";
++		fprintf(stderr, "error: %s:%u:%u: ", filename, e->line, e->col);
+ 		vfprintf(stderr, e->fmt, *e->args);
+ 	}
+ }

@@ -1,7 +1,7 @@
 {
   "app-id": "org.musesequencer.Muse3",
   "runtime": "org.kde.Platform",
-  "runtime-version": "5.12",
+  "runtime-version": "5.14",
   "sdk": "org.kde.Sdk",
   "command": "muse3",
   "rename-desktop-file": "muse.desktop",
@@ -53,6 +53,7 @@
         }
       ]
     },
+    "shared-modules/python2.7/python-2.7.json",
     {
       "name": "jack2",
       "buildsystem": "simple",
@@ -268,6 +269,11 @@
           "type": "patch",
           "strip-components": 2,
           "path": "patches/muse-appdata.patch"
+        },
+        {
+          "type": "patch",
+          "strip-components": 2,
+          "path": "patches/muse-serd-fixes.patch"
         }
       ]
     }

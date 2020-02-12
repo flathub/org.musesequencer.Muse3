@@ -19,7 +19,28 @@ index e8484d2f..0c260b4a 100644
    <description>
      <p>
        MusE is a MIDI/Audio sequencer with recording and editing capabilities. It can
-@@ -31,4 +32,20 @@
+@@ -17,18 +18,37 @@
+   </description>
+   <screenshots>
+     <screenshot type="default">
+-      <image>http://www.muse-sequencer.org/pic/mypics/muse2.1/muse2.1_song.png</image>
++      <image>https://muse-sequencer.github.io/img/arranger_new.png</image>
+     </screenshot>
+     <screenshot>
+-      <image>http://www.muse-sequencer.org/pic/mypics/muse2.0/main_window_with_midi_editor.png</image>
++      <image>https://muse-sequencer.github.io/img/midi.png</image>
+     </screenshot>
+     <screenshot>
+-      <image>http://www.muse-sequencer.org/pic/mypics/muse2.0/main_window_with_tracks.png</image>
++      <image>https://muse-sequencer.github.io/img/drum.png</image>
+     </screenshot>
+     <screenshot>
+-      <image>http://www.muse-sequencer.org/pic/mypics/muse2.0/mixer.png</image>
++      <image>https://muse-sequencer.github.io/img/wave.png</image>
++    </screenshot>
++    <screenshot>
++      <image>https://muse-sequencer.github.io/img/mixer.png</image>
+     </screenshot>
    </screenshots>
    <url type="homepage">http://muse-sequencer.org/</url>
    <update_contact>lmuse-user_at_lists.sourceforge.net</update_contact>

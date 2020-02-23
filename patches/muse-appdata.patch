@@ -1,16 +1,19 @@
-commit 7c7a15eb33f5ab5da11c66cba825d86a9f757246
+commit 6ea64287ae9f322840dc8246692848729e6a7091
 Author: Hubert Figuière <hub@figuiere.net>
-Date:   Sat Oct 5 20:31:15 2019 -0400
+Date:   Wed Jan 15 18:21:59 2020 -0500
 
-    Make appdata validate for flathub:
+    appdata fixes
     
-    -added oars tag
-    -added release info
+    - 3.1.0 release
+    - change website URL
+    - update image links
+    - oars
+    - changelong
 
-diff --git a/muse3/packaging/muse.appdata.xml b/muse3/packaging/muse.appdata.xml
-index e8484d2f..0c260b4a 100644
---- a/muse3/packaging/muse.appdata.xml
-+++ b/muse3/packaging/muse.appdata.xml
+diff --git a/muse3/packaging/org.musesequencer.Muse3.appdata.xml b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
+index 1ff4e498..fe9d80c1 100644
+--- a/muse3/packaging/org.musesequencer.Muse3.appdata.xml
++++ b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
 @@ -7,6 +7,7 @@
    <name>MusE</name>
    <summary>The open source sequencer</summary>
@@ -19,7 +22,7 @@ index e8484d2f..0c260b4a 100644
    <description>
      <p>
        MusE is a MIDI/Audio sequencer with recording and editing capabilities. It can
-@@ -17,18 +18,37 @@
+@@ -17,18 +18,99 @@
    </description>
    <screenshots>
      <screenshot type="default">
@@ -42,13 +45,76 @@ index e8484d2f..0c260b4a 100644
 +      <image>https://muse-sequencer.github.io/img/mixer.png</image>
      </screenshot>
    </screenshots>
-   <url type="homepage">http://muse-sequencer.org/</url>
+-  <url type="homepage">http://muse-sequencer.org/</url>
++  <url type="homepage">https://muse-sequencer.github.io/</url>
    <update_contact>lmuse-user_at_lists.sourceforge.net</update_contact>
 +  <releases>
++    <release version="3.1.0" date="2020-02-23">
++      <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0/muse3/ChangeLog</url>
++      <description>
++        <p>Among the bigger features since 3.0 is the inclusion of a
++        Plugin cache. This has two benefits, scanning of plugins are
++        no longer done on a standard startup, making the startup a lot
++        faster. Also the scanning is done in a separate process so no
++        more crashes during startup due to issues with plugins.</p>
++        <p>Here is a short list of other prominent changes since 3.0.</p>
++        <p>Metronome improved, a lot of new settings:</p>
++        <ul>
++          <li>reawakened pre count!</li>
++          <li>Auto-connect metronome to first audio output track.</li>
++        </ul>
++        <p>General plugins improvements:</p>
++        <ul>
++          <li>Effect rack extended to 8 plugins instead of 4</li>
++          <li>Generic plugin UI: Added 'Quirks' buttons to toolbar</li>
++        </ul>
++        <p>LV2 plugins:</p>
++        <ul>
++          <li>Fix sequencing/syncing plugins (Helm, LV2 metronome, NoiseMak3r...)</li>
++          <li>Rewrite of state/worker support and more, fixes several synths:</li>
++          <li>Fix plugins using worker extension, such as *v1 suite (drumkv1 etc.)</li>
++          <li>Removed ALL internal LV2 support. Too hard to maintain.</li>
++          <li>Fixed LV2 X11 GUI size.</li>
++          <li>MidNam support</li>
++        </ul>
++        <p>VST plugins:</p>
++        <ul>
++          <li>Fix # 708: Surge-vst crashes.</li>
++        </ul>
++        <p>DSSI/VST:</p>
++        <ul>
++          <li>DSSI-VST was recently found to be working on recent kernels.</li>
++          <li>There's now a plugin tab for configuring the
++          initialization of this support from inside MusE</li>
++        </ul>
++        <p>LADSPA plugins:</p>
++        <ul>
++          <li>Ladspa RDF (lrdf) support.</li>
++        </ul>
++        <p>Other changes:</p>
++        <ul>
++          <li>A lot of UI changes for better consistency and usability, menus, toolbars.</li>
++          <li>Many many under the hood changes for more consistency
++          and lower cpu usage in the editors</li>
++          <li>Better support for HiDPI screens</li>
++          <li>Lots and lots of new keyboard shortcuts and now a search
++          field in the shortcut dialog to make it easier to locate
++          shortcuts also.</li>
++          <li>Many many new vectorized icons</li>
++          <li>More colors in UI customizable, including for stylesheets</li>
++          <li>Settings dialog redesigned to make it easier to navigate.</li>
++          <li>Double click on track ID selects all tracks of the same type</li>
++          <li>Transport window slightly redesigned</li>
++          <li>Improvements to midi timing</li>
++          <li>Global cut/insert improvements, fixes crashes with markers</li>
++          <li>Rewind on stop setting</li>
++        </ul>
++      </description>
++    </release>
 +    <release version="3.0.2" date="2018-01-30">
 +      <url>https://github.com/muse-sequencer/muse/blob/muse_3_0_2/muse3/ChangeLog</url>
 +      <description>
-+        <p>This release fixes many bugs</p>
++        <p>This release fixes many bugs.</p>
 +        <ul>
 +          <li>Fix crashes when selecting MIDI devices</li>
 +          <li>Issue #604 - build failure fixes</li>

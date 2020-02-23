@@ -1,15 +1,17 @@
-commit b67c317487637bff36f73f7123b92c43183f8232
+commit 6ea64287ae9f322840dc8246692848729e6a7091
 Author: Hubert Figuière <hub@figuiere.net>
 Date:   Wed Jan 15 18:21:59 2020 -0500
 
     appdata fixes
     
+    - 3.1.0 release
+    - change website URL
     - update image links
     - oars
     - changelong
 
 diff --git a/muse3/packaging/org.musesequencer.Muse3.appdata.xml b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
-index 1ff4e498..6a5ba4d2 100644
+index 1ff4e498..fe9d80c1 100644
 --- a/muse3/packaging/org.musesequencer.Muse3.appdata.xml
 +++ b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
 @@ -7,6 +7,7 @@
@@ -20,7 +22,7 @@ index 1ff4e498..6a5ba4d2 100644
    <description>
      <p>
        MusE is a MIDI/Audio sequencer with recording and editing capabilities. It can
-@@ -17,18 +18,243 @@
+@@ -17,18 +18,99 @@
    </description>
    <screenshots>
      <screenshot type="default">
@@ -43,212 +45,69 @@ index 1ff4e498..6a5ba4d2 100644
 +      <image>https://muse-sequencer.github.io/img/mixer.png</image>
      </screenshot>
    </screenshots>
-   <url type="homepage">http://muse-sequencer.org/</url>
+-  <url type="homepage">http://muse-sequencer.org/</url>
++  <url type="homepage">https://muse-sequencer.github.io/</url>
    <update_contact>lmuse-user_at_lists.sourceforge.net</update_contact>
 +  <releases>
-+    <release version="3.1.0-pre4" date="2019-12-11">
-+      <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0_pre4/muse3/ChangeLog</url>
++    <release version="3.1.0" date="2020-02-23">
++      <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0/muse3/ChangeLog</url>
 +      <description>
-+        <p>The third pre-release for 3.1.0.</p>
++        <p>Among the bigger features since 3.0 is the inclusion of a
++        Plugin cache. This has two benefits, scanning of plugins are
++        no longer done on a standard startup, making the startup a lot
++        faster. Also the scanning is done in a separate process so no
++        more crashes during startup due to issues with plugins.</p>
++        <p>Here is a short list of other prominent changes since 3.0.</p>
++        <p>Metronome improved, a lot of new settings:</p>
 +        <ul>
-+          <li>Customizable size of icons and custom tool cursors (kybos)</li>
-+          <li>Replaced one-letter column headers by icons in track header (kybos)</li>
-+          <li>German translation updated (kybos)</li>
-+          <li>Build issues:
-+          <ul>
-+            <li>Dependency problems: Moved several files. All source together with ui files now. (Tim)</li>
-+            <li>Remove all dead obsolete trackinfo 'alt' button code.</li>
-+            <li>Fix some compile warnings with LV2 worker functions, some others. (Tim)</li>
-+            <li>Moved appearance and confmport cpp/h files from /muse
-+            to muse/components. Trying to solve some dependency
-+            problems...</li>
-+          </ul>
-+          </li>
-+          <li>FIXED: Mixer strips missing if loading an older song saved before 20.10.2019</li>
-+          <li>FIXED: Duplicate strips found in songs saved before 20.10.2019</li>
-+          <li>FIXED: Long-time mixer problem with restoring size</li>
-+          <li>Remove some more "old vs. new" drum track stuff, change
-+          some text etc. (Tim)</li>
-+          <li>Added option for opening MDI subwindows maximized (kybos)</li>
-+          <li>Fix gross misnomer throughout, should be "timebase
-+          master, not "transport master"</li>
-+          <li>Fix EffectRack::songChanged() crash when reloading
-+          songs: Check track still exists. (Tim)</li>
-+          <li>Update start play position when making a seek. Rewind to
-+          Start behaves more logical then, imho (rj)</li>
-+          <li>Fixed bug #719 downmix to existing file appends to the old file (rj)</li>
-+          <li>Transport master fixes: New button on transport. Fix
-+          connect at startup etc. (Tim) Seems there is no way to ask
-+          Jack if are we transport master (without setting it).  So
-+          new code in our Jack driver - and a 1Hz watchdog - monitor
-+          for changes to master status.  Care was taken to not disturb
-+          who else may be master. Click flashing button to force.
-+          Tested the new button OK with three instances of MusE
-+          competing for transport master.</li>
-+          <li>Added File->New from template... menu entry. File->New
-+          loads default template (kybos)</li>
-+          <li>Fixed inconsistent UI texts where appropriate: (kybos)
-+            <ul>
-+              <li>Title-style for menu texts and window titles</li>
-+              <li>Sentence-style for all other UI texts</li>
-+              <li>Three dots (...) for menu entries triggering a dialog (like Save As...)</li>
-+            </ul>
-+          </li>
-+          <li>Fixed inconsistent tooltip font size (kybos)</li>
-+          <li>Vector replacements for many pixmap icons (kybos)</li>
-+          <li>Fixed bug #720 arm follows track did bad things while recording (rj)</li>
-+          <li>Eliminated all but one tr("Empty") string usage in
-+          plugins/pipeline/rack. (Tim)</li>
-+          <li>Snooper: Provide flashColor property. Changed it in
-+          Ardour and Dark qss themes.</li>
-+          <li>Added a specialization of QMdiArea to work around
-+          problems with PgUp and PgDown shortcuts as it was found
-+          through Snooper tool that this is the widget that was
-+          stealing the keypresses.</li>
-+          <li>Another keypress fix in pcanvas.cpp to allow Return to be captured</li>
-+          <li>Fixed a crash in drumlist when using a drummap and
-+          opening without the port having been properly initialized
-+          (in this case the synth plugin was missing). The dm->port
-+          had an extreme value, now the range is checked. (rj)</li>
-+          <li>Fix #697: On HiDPI displays, plugin native UI windows
-+          are automatically scaled by Qt, but most of the native
-+          plugin UIs are not scalable or apply their own
-+          scaling. There is now a global setting for reverting the Qt
-+          window scaling. It can be overridden for each soft synth
-+          track by a local setting in the Quirks toolbar. (kybos)</li>
-+          <li>Fix # 708: Surge-vst crashes. It called our
-+          pluginHostCallback() immediately from instantiate() before
-+          we stored the pointer. Added VstNativeSynth::openPlugin()
-+          (Tim)</li>
-+          <li>Fixed the DidYouKnow menu alternative so it shows the
-+          dialog even if the checkbox for not displaying it is
-+          checked. (rj)</li>
-+          <li>Added a few more lines to the DidYouKnow.txt database</li>
-+          <li>Snooper improvements, fix crashes, fix 'parented top
-+          level' not working right. (Tim)</li>
-+          <li>Unfortunately had to revoke the 'easy fix' below for
-+          getting more shortcuts to work there were side effects...
-+          The search goes on for the 'real' solution (rj)</li>
-+          <li>Snooper improvements. Moved to Help menu. Live realtime
-+          monitoring of events. (Tim)</li>
-+          <li>New - Introducing the Snooper (object tree) for coders
-+          and stylesheet authors: (Tim) Click new Snooper button in
-+          Appearance to start. Then click on anything anywhere</li>
-+          <li> More keyboard shortcuts
-+            <ul>
-+              <li>First of, I found out that several shortcuts never end
-+              up in the dispatcher since they (rj) were tested against
-+              the "accepted" property. Seems this is not reliable nor
-+              needed, it affected atleast PgUp, PgDn and Return.</li>
-+              <li>Arm currently selected track can now be bound: Default
-+              Ctrl+Return</li>
-+              <li>Goto end of song can be bound: Shift+W</li>
-+            </ul>
-+          </li>
-+          <li>New solution to making bar lines more visible. Basically
-+          removed more hardcoded colors and made them configurable in
-+          the appearance dialog (rj)</li>
-+          <li>Fixed escape-key shortcut for closing a few more dialogs/editors:
-+          master track list/graphical, instrument editor (rj)</li>
-+          <li>Advanced router stylesheet support: New property
-+          'RouteTreeWidget::categoryColor'. (Tim) Also specific
-+          instance IDs Router_input_tree and Router_output_tree, if
-+          desired.</li>
-+          <li>Add command line option -C "Do not re-create plugin
-+          cache."  (Tim) Avoids (looong) repeated re-creations in some
-+          cases. Helps devs avoid after rebuilds.</li>
-+          <li>Soundfont *.sf3 files: Small tweak allows our MESS
-+          fluidsynth to load them. (Tim)</li>
-+          <li>Add dedicated new 'mute parts' svg icon, for 17.11 (Tim)</li>
-+          <li>Bug 681: Fix multichannel track feeding aux track, no
-+          audio. In AudioTrack::copyData().</li>
-+          <li>Fixed metronome selection of wave files, the selection
-+          in the ui did not actually do anything. (rj)</li>
-+          <li>Introduce new scalable icons and cursors for edit tools
-+          (kybos) Improved cursor interaction in piano roll/drum
-+          editor (event canvas vs. control canvas), cursor shape shows
-+          when cursor has no function in given area Consistent cursor
-+          shape display in all editors affected (midi, part, score,
-+          master, wave) Correct cursor size on HiDPI screens (fixes
-+          issue #637)</li>
-+          <li>LV2: Fix sequencing/syncing plugins (Helm, LV2
-+          metronome, NoiseMak3r...) (Tim) Fixed TimePosition
-+          usage. Add quirks class for different plugin behaviour
-+          observed.</li>
-+          <li>Generic plugin UI: Added 'Quirks' buttons to toolbar:
-+          "fixed speed" (fixes NoiseMak3r modulator stuck in small
-+          loop in stop mode for ex.), "transport affects latency"
-+          (self-correcting LV2 Example Metronome for ex.), and
-+          "override reported latency" (for plugins with broken or
-+          inaccurate latency reporting).</li>
++          <li>reawakened pre count!</li>
++          <li>Auto-connect metronome to first audio output track.</li>
 +        </ul>
-+      </description>
-+    </release>
-+    <release version="3.1.0-pre3" date="2019-11-12">
-+      <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0_pre3/muse3/ChangeLog</url>
-+      <description>
-+       <p>The third pre-release for 3.1.0.</p>
-+       <ul>
-+         <li>MusE config files and names have changed!</li>
-+         <li>New! Comprehensive full midi and audio latency correction / compensation</li>
-+         <li>Metronome super-makeover</li>
-+         <li>LV2 Major rewrite of state/worker support and more, fixes several synths</li>
-+         <li>Mixer and strips - Save entire state</li>
-+         <li>Midi Editor now keeps state (zoom, pos, controllers) after closing</li>
-+         <li>New! Restored Python remote control</li>
-+         <li>Added tab in Aboutbox with some runtime diagnostics of MusE</li>
-+         <li>Add: Tooltip for current note/instrument in the midi editors</li>
-+         <li>New - Instrument can now be changed on a Synth Track</li>
-+         <li>Implemented issue 644: Rewind on stop</li>
-+         <li>Fix issue 667: Hang on automatic restart. Reset jackStarted upon restart</li>
-+         <li>Fix issue 638: Font too small in popups started from mixer strip</li>
-+         <li>Add: Double click on track ID selects all tracks of the same type</li>
-+         <li>New: Persistent synth tracks. Tracks are preserved even if synth is not found</li>
-+         <li>LV2: Fix plugins using worker extension, such as *v1 suite (drumkv1 etc.)</li>
-+         <li>LV2: Removed ALL internal LV2 support. Too hard to maintain</li>
-+         <li>Fixes for BSD support</li>
-+         <li>Fixed midi import problem as reported in forums</li>
-+         <li>Fixed Midi Input Transformator and Midi Transformator problems</li>
-+         <li>Fix LinuxVST duplicates in plugin list if duplicate plugins exist</li>
-+       </ul>
-+      </description>
-+    </release>
-+    <release version="3.1.0-pre1" date="2019-02-25">
-+      <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0_pre1/muse3/ChangeLog</url>
-+      <description>
-+        <p>The first pre-release of 3.1.0.</p>
++        <p>General plugins improvements:</p>
 +        <ul>
-+          <li>Added cosmetic highlight lines in arranger for every numbered line</li>
-+          <li>Added shortcut for renaming a part</li>
-+          <li>Added a text filter to the shortcut dialog</li>
-+          <li>Issue 639: Make 'midi remote' dialog box more clear</li>
-+          <li>Various code cleanup</li>
-+          <li>Issue 640: improvements to wavecanvas</li>
-+          <li>Updated all PyQt4 based midi scripts to use PyQt5</li>
-+          <li>Fix a crash closing a song and loading another song</li>
-+          <li>NEW! Midi controller graphs copy/cut/paste and drag/drop</li>
-+          <li>Mixer strips added to Drum and Wave Editors</li>
-+          <li>Massive graphics, canvases, cut/copy/paste/drag/drop imporvments</li>
-+          <li>Run properly on HiDPI screens</li>
-+          <li>Fixed some plugin scanner bugs, including a safer loading to avoid crashes</li>
-+          <li>Added Ladspa RDF (lrdf) support</li>
-+          <li>Added force rescan for plugins</li>
-+          <li>Issue 629: Meta events (lyrics) not imported</li>
-+          <li>Issue 635: Build failure</li>
-+          <li>Fixed some LV2 plugins bugs</li>
-+          <li>Menus cleanup and rearranging</li>
-+          <li>Improved simple plugin system</li>
-+          <li>Fixes of RtAudio driver</li>
-+          <li>Fixed: Was impossible to adjust static tempo when Master Track disabled</li>
-+          <li>Removed superfluous tempo and sig boxes from Master Track Graphic toolbars</li>
-+          <li>Enabling external sync no longer forces Master Track off</li>
-+          <li>Added Master button to Tempo toolbar in all windows. Tempo box now obeys it</li>
-+          <li>Replaced Transport tempo and sig boxes with editable spinbox versions</li>
-+          <li>Fixed Transport controls' widths causing too-wide Transport</li>
-+          <li>New Transport buttons and SVG icons</li>
-+          <li>Auto-connect metronome to first audio output track</li>
-+          <li>Fix many MIDI timing errors</li>
-+          <li>Bring precount back</li>
++          <li>Effect rack extended to 8 plugins instead of 4</li>
++          <li>Generic plugin UI: Added 'Quirks' buttons to toolbar</li>
++        </ul>
++        <p>LV2 plugins:</p>
++        <ul>
++          <li>Fix sequencing/syncing plugins (Helm, LV2 metronome, NoiseMak3r...)</li>
++          <li>Rewrite of state/worker support and more, fixes several synths:</li>
++          <li>Fix plugins using worker extension, such as *v1 suite (drumkv1 etc.)</li>
++          <li>Removed ALL internal LV2 support. Too hard to maintain.</li>
++          <li>Fixed LV2 X11 GUI size.</li>
++          <li>MidNam support</li>
++        </ul>
++        <p>VST plugins:</p>
++        <ul>
++          <li>Fix # 708: Surge-vst crashes.</li>
++        </ul>
++        <p>DSSI/VST:</p>
++        <ul>
++          <li>DSSI-VST was recently found to be working on recent kernels.</li>
++          <li>There's now a plugin tab for configuring the
++          initialization of this support from inside MusE</li>
++        </ul>
++        <p>LADSPA plugins:</p>
++        <ul>
++          <li>Ladspa RDF (lrdf) support.</li>
++        </ul>
++        <p>Other changes:</p>
++        <ul>
++          <li>A lot of UI changes for better consistency and usability, menus, toolbars.</li>
++          <li>Many many under the hood changes for more consistency
++          and lower cpu usage in the editors</li>
++          <li>Better support for HiDPI screens</li>
++          <li>Lots and lots of new keyboard shortcuts and now a search
++          field in the shortcut dialog to make it easier to locate
++          shortcuts also.</li>
++          <li>Many many new vectorized icons</li>
++          <li>More colors in UI customizable, including for stylesheets</li>
++          <li>Settings dialog redesigned to make it easier to navigate.</li>
++          <li>Double click on track ID selects all tracks of the same type</li>
++          <li>Transport window slightly redesigned</li>
++          <li>Improvements to midi timing</li>
++          <li>Global cut/insert improvements, fixes crashes with markers</li>
++          <li>Rewind on stop setting</li>
 +        </ul>
 +      </description>
 +    </release>

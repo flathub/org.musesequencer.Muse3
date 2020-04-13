@@ -30,7 +30,6 @@
   ],
   "modules": [
     "shared-modules/gtk2/gtk2.json",
-    "shared-modules/python2.7/python-2.7.json",
     {
       "name": "ladspa",
       "no-autogen": true,
@@ -55,7 +54,7 @@
       "name": "jack2",
       "buildsystem": "simple",
       "build-commands": [
-        "./waf configure --prefix=/app --htmldir=/app/share/doc/jack/ --freebob=no --classic",
+        "./waf configure --prefix=/app --htmldir=/app/share/doc/jack/ --classic",
         "./waf build -j $FLATPAK_BUILDER_N_JOBS",
         "./waf install"
       ],
@@ -67,8 +66,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/jackaudio/jack2/releases/download/v1.9.12/jack2-1.9.12.tar.gz",
-          "sha256": "deefe2f936dc32f59ad3cef7e37276c2035ef8a024ca92118f35c9a292272e33"
+          "url": "https://github.com/jackaudio/jack2/releases/download/v1.9.14/v1.9.14.tar.gz",
+          "sha256": "a20a32366780c0061fd58fbb5f09e514ea9b7ce6e53b080a44b11a558a83217c"
         }
       ]
     },
@@ -92,6 +91,10 @@
       "cleanup": [
         "/include"
       ],
+      "config-opts": [
+        "--disable-python",
+        "--disable-static"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -102,6 +105,10 @@
           "type": "patch",
           "strip-components": 0,
           "path": "patches/instpatch.examples.patch"
+        },
+        {
+          "type": "patch",
+          "path": "patches/instpatch-python-configure.patch"
         },
         {
           "type": "script",
@@ -294,9 +301,9 @@
       "name": "lv2",
       "buildsystem": "simple",
       "build-commands": [
-        "python2 ./waf configure --prefix=/app --lv2dir=/app/lib/lv2 --copy-headers",
-        "python2 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
-        "python2 ./waf install"
+        "python3 ./waf configure --prefix=/app --lv2dir=/app/lib/lv2 --copy-headers",
+        "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
+        "python3 ./waf install"
       ],
       "cleanup": [
         "/include",

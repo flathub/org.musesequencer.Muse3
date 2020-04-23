@@ -87,57 +87,18 @@
     },
     {
       "name": "libinstpatch",
-      "rm-configure": true,
-      "cleanup": [
-        "/include"
-      ],
-      "config-opts": [
-        "--disable-python",
-        "--disable-static"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/swami/libinstpatch/1.0.0/libinstpatch-1.0.0.tar.gz",
-          "sha256": "8943e2226d97609104365f0105be87b326a0b2335cea22d29604a45f8ef1cee7"
-        },
-        {
-          "type": "patch",
-          "strip-components": 0,
-          "path": "patches/instpatch.examples.patch"
-        },
-        {
-          "type": "patch",
-          "path": "patches/instpatch-python-configure.patch"
-        },
-        {
-          "type": "script",
-          "commands": [
-            "autoreconf -fiv"
-          ],
-          "dest-filename": "autogen.sh"
-        }
-      ]
-    },
-    {
-      "name": "fluidsynth",
       "buildsystem": "cmake-ninja",
       "config-opts": [
-        "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-        "-DLIB_SUFFIX=",
-        "-DCMAKE_EXE_LINKER_FLAGS=-lncurses",
-        "-DCMAKE_SHARED_LINKER_FLAGS=-lncurses",
-        "-Denable-ladspa=on",
-        "-Denable-jack=off"
+        "-DLIB_SUFFIX="
       ],
       "cleanup": [
-        "/include"
+	"/share/doc"
       ],
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/FluidSynth/fluidsynth/archive/v2.1.2.tar.gz",
-          "sha256": "9206d83b8d2f7e1ec259ee01e943071de67e419aabe142b51312f8edb39c5503"
+          "url": "https://github.com/swami/libinstpatch/archive/v1.1.4.tar.gz",
+          "sha256": "e529b15055b7341ab7a75885338d0a9b84859e3f6ca3ed3c363e7f3521329c9c"
         }
       ]
     },
@@ -182,6 +143,26 @@
             "autoreconf -fiv"
           ],
           "dest-filename": "autogen.sh"
+        }
+      ]
+    },
+    {
+      "name": "fluidsynth",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+        "-DLIB_SUFFIX=",
+        "-Denable-ladspa=on",
+        "-Denable-jack=on"
+      ],
+      "cleanup": [
+        "/include"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/FluidSynth/fluidsynth/archive/v2.1.2.tar.gz",
+          "sha256": "9206d83b8d2f7e1ec259ee01e943071de67e419aabe142b51312f8edb39c5503"
         }
       ]
     },

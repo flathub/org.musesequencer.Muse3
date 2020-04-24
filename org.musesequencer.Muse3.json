@@ -23,6 +23,9 @@
     "--env=QT_AUTO_SCREEN_SCALE_FACTOR=1"
   ],
   "cleanup": [
+    "/include",
+    "/lib/cmake",
+    "/lib/pkgconfig",
     "/share/man",
     "/share/doc",
     "/share/gtk-doc",

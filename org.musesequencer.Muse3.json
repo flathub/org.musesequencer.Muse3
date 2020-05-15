@@ -12,16 +12,65 @@
     /* "--socket=wayland", */
     /* Note playback */
     "--socket=pulseaudio",
-    /* MIDI */
+    /* MIDI + jack */
     "--device=all",
+    "--device=shm",
     /* Allow loading, saving files from anywhere (portals don’t work yet) */
     "--filesystem=home",
     /* Allow other instances to see lockfiles */
     "--env=TMPDIR=/var/tmp",
     /* On SuSE it seems to be necessary for sound to work */
     "--env=ALSA_CONFIG_PATH=",
-    "--env=QT_AUTO_SCREEN_SCALE_FACTOR=1"
+    "--env=LV2_PATH=/app/extensions/Lv2Plugins/lv2",
+    "--env=DSSI_PATH=/app/extensions/DssiPlugins/dssi",
+    "--env=LADSPA_PATH=/app/extensions/LadspaPlugins/ladspa",
+    "--env=VST_PATH=/app/extensions/VstPlugins/lxvst",
+    "--env=LXVST_PATH=/app/extensions/VstPlugins/lxvst",
+    "--env=VST3_PATH=/app/extensions/Vst3Plugins/vst3",
+    "--env=QT_ENABLE_HIGHDPI_SCALING=1"
   ],
+  "add-extensions": {
+    "org.freedesktop.LinuxAudio.Lv2Plugins": {
+      "directory": "extensions/Lv2Plugins",
+      "version": "19.08",
+      "add-ld-path": "lib",
+      "merge-dirs": "lv2",
+      "subdirectories": true,
+      "no-autodownload": true
+    },
+    "org.freedesktop.LinuxAudio.DssiPlugins": {
+      "directory": "extensions/DssiPlugins",
+      "version": "19.08",
+      "add-ld-path": "lib",
+      "merge-dirs": "dssi",
+      "subdirectories": true,
+      "no-autodownload": true
+    },
+    "org.freedesktop.LinuxAudio.LadspaPlugins": {
+      "directory": "extensions/LadspaPlugins",
+      "version": "19.08",
+      "add-ld-path": "lib",
+      "merge-dirs": "ladspa",
+      "subdirectories": true,
+      "no-autodownload": true
+    },
+    "org.freedesktop.LinuxAudio.VstPlugins": {
+      "directory": "extensions/VstPlugins",
+      "version": "19.08",
+      "add-ld-path": "lib",
+      "merge-dirs": "lxvst",
+      "subdirectories": true,
+      "no-autodownload": true
+    },
+    "org.freedesktop.LinuxAudio.Vst3Plugins": {
+      "directory": "extensions/Vst3Plugins",
+      "version": "19.08",
+      "add-ld-path": "lib",
+      "merge-dirs": "vst3",
+      "subdirectories": true,
+      "no-autodownload": true
+    }
+  },
   "cleanup": [
     "/include",
     "/lib/cmake",
@@ -73,105 +122,7 @@
     "shared-modules/linux-audio/liblo.json",
     "shared-modules/linux-audio/dssi.json",
     "shared-modules/linux-audio/lv2.json",
-    {
-      "name": "serd",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 ./waf configure --prefix=/app",
-        "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
-        "python3 ./waf install"
-      ],
-      "cleanup": [
-        "/include"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://download.drobilla.net/serd-0.30.2.tar.bz2",
-          "sha256": "9d3102701172804f823f2215ca3147c50eba992641f9fbe014272355f4937202"
-        }
-      ],
-      "post-install": [
-        "install -Dm644 -t /app/share/licenses/serd COPYING"
-      ],
-      "cleanup": [
-        "/bin",
-        "/share/man"
-      ]
-    },
-    {
-      "name": "sord",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 ./waf configure --prefix=/app",
-        "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
-        "python3 ./waf install"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://download.drobilla.net/sord-0.16.4.tar.bz2",
-          "sha256": "b15998f4e7ad958201346009477d6696e90ee5d3e9aff25e7e9be074372690d7"
-        }
-      ],
-      "post-install": [
-        "install -Dm644 -t /app/share/licenses/sord COPYING"
-      ],
-      "cleanup": [
-        "/bin",
-        "/include",
-        "/share/man"
-      ]
-    },
-    {
-      "name": "sratom",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 ./waf configure --prefix=/app",
-        "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
-        "python3 ./waf install"
-      ],
-      "cleanup": [
-        "/include"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://download.drobilla.net/sratom-0.6.4.tar.bz2",
-          "sha256": "146c8f14b8902ac3c8fa8c2e0a014eb8a38fab60090c5adbfbff3e3b7c5c006e"
-        }
-      ],
-      "post-install": [
-        "install -Dm644 -t /app/share/licenses/sratom COPYING"
-      ]
-    },
-    {
-      "name": "lilv",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 ./waf configure --prefix=/app",
-        "python3 ./waf build -j $FLATPAK_BUILDER_N_JOBS",
-        "python3 ./waf install"
-      ],
-      "cleanup": [
-        "/include"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://download.drobilla.net/lilv-0.24.6.tar.bz2",
-          "sha256": "5f544cf79656e0782a03a2cc7ab1d31a93f36d71d4187bd427ade8d7b55370dc"
-        }
-      ],
-      "post-install": [
-        "install -Dm644 -t /app/share/licenses/lilv COPYING"
-      ],
-      "cleanup": [
-        "/bin",
-        "/etc",
-        "/share/man"
-      ]
-    },
+    "shared-modules/linux-audio/lilv.json",
     {
       "name": "muse3",
       "buildsystem": "cmake-ninja",
@@ -184,6 +135,13 @@
         ]
       },
       "subdir": "muse3",
+      "post-install": [
+          "install -d /app/extensions/Lv2Plugins",
+          "install -d /app/extensions/LadspaPlugins",
+          "install -d /app/extensions/DssiPlugins",
+          "install -d /app/extensions/VstPlugins",
+          "install -d /app/extensions/Vst3Plugins"
+      ],
       "sources": [
         {
           "type": "archive",

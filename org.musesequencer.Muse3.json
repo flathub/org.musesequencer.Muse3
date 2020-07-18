@@ -135,8 +135,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/muse-sequencer/muse/archive/muse_3_1_0.tar.gz",
-          "sha256": "c3005cc0c0ca566a0b2a397e823e5a927d2b6509d8549ca887a1a206650d6a5e"
+          "url": "https://github.com/muse-sequencer/muse/archive/muse_3_1_1.tar.gz",
+          "sha256": "f3738ed4b3e6f1f055665ab8b85c4b8fd681afde8598b07172242c7a721b5628"
         },
         {
           "type": "patch",

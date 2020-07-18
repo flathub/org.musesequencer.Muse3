@@ -1,129 +1,48 @@
-commit 6ea64287ae9f322840dc8246692848729e6a7091
-Author: Hubert Figuière <hub@figuiere.net>
-Date:   Wed Jan 15 18:21:59 2020 -0500
-
-    appdata fixes
-    
-    - 3.1.0 release
-    - change website URL
-    - update image links
-    - oars
-    - changelong
-
 diff --git a/muse3/packaging/org.musesequencer.Muse3.appdata.xml b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
 index 1ff4e498..fe9d80c1 100644
 --- a/muse3/packaging/org.musesequencer.Muse3.appdata.xml
 +++ b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
-@@ -7,6 +7,7 @@
-   <name>MusE</name>
-   <summary>The open source sequencer</summary>
-   <translation/>
-+  <content_rating type="oars-1.1" />
-   <description>
-     <p>
-       MusE is a MIDI/Audio sequencer with recording and editing capabilities. It can
-@@ -17,18 +18,99 @@
-   </description>
-   <screenshots>
-     <screenshot type="default">
--      <image>http://www.muse-sequencer.org/pic/mypics/muse2.1/muse2.1_song.png</image>
-+      <image>https://muse-sequencer.github.io/img/arranger_new.png</image>
-     </screenshot>
-     <screenshot>
--      <image>http://www.muse-sequencer.org/pic/mypics/muse2.0/main_window_with_midi_editor.png</image>
-+      <image>https://muse-sequencer.github.io/img/midi.png</image>
-     </screenshot>
-     <screenshot>
--      <image>http://www.muse-sequencer.org/pic/mypics/muse2.0/main_window_with_tracks.png</image>
-+      <image>https://muse-sequencer.github.io/img/drum.png</image>
-     </screenshot>
-     <screenshot>
--      <image>http://www.muse-sequencer.org/pic/mypics/muse2.0/mixer.png</image>
-+      <image>https://muse-sequencer.github.io/img/wave.png</image>
-+    </screenshot>
-+    <screenshot>
-+      <image>https://muse-sequencer.github.io/img/mixer.png</image>
-     </screenshot>
-   </screenshots>
--  <url type="homepage">http://muse-sequencer.org/</url>
-+  <url type="homepage">https://muse-sequencer.github.io/</url>
+@@ -17,5 +18,42 @@
+   <url type="homepage">https://muse-sequencer.github.io/</url>
    <update_contact>lmuse-user_at_lists.sourceforge.net</update_contact>
-+  <releases>
-+    <release version="3.1.0" date="2020-02-23">
-+      <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0/muse3/ChangeLog</url>
+   <releases>
++    <release version="3.1.1" date="2020-07-18">
++      <url>https://github.com/muse-sequencer/muse/releases/tag/muse_3_1_1</url>
 +      <description>
-+        <p>Among the bigger features since 3.0 is the inclusion of a
-+        Plugin cache. This has two benefits, scanning of plugins are
-+        no longer done on a standard startup, making the startup a lot
-+        faster. Also the scanning is done in a separate process so no
-+        more crashes during startup due to issues with plugins.</p>
-+        <p>Here is a short list of other prominent changes since 3.0.</p>
-+        <p>Metronome improved, a lot of new settings:</p>
-+        <ul>
-+          <li>reawakened pre count!</li>
-+          <li>Auto-connect metronome to first audio output track.</li>
-+        </ul>
-+        <p>General plugins improvements:</p>
-+        <ul>
-+          <li>Effect rack extended to 8 plugins instead of 4</li>
-+          <li>Generic plugin UI: Added 'Quirks' buttons to toolbar</li>
-+        </ul>
-+        <p>LV2 plugins:</p>
-+        <ul>
-+          <li>Fix sequencing/syncing plugins (Helm, LV2 metronome, NoiseMak3r...)</li>
-+          <li>Rewrite of state/worker support and more, fixes several synths:</li>
-+          <li>Fix plugins using worker extension, such as *v1 suite (drumkv1 etc.)</li>
-+          <li>Removed ALL internal LV2 support. Too hard to maintain.</li>
-+          <li>Fixed LV2 X11 GUI size.</li>
-+          <li>MidNam support</li>
-+        </ul>
-+        <p>VST plugins:</p>
-+        <ul>
-+          <li>Fix # 708: Surge-vst crashes.</li>
-+        </ul>
-+        <p>DSSI/VST:</p>
-+        <ul>
-+          <li>DSSI-VST was recently found to be working on recent kernels.</li>
-+          <li>There's now a plugin tab for configuring the
-+          initialization of this support from inside MusE</li>
-+        </ul>
-+        <p>LADSPA plugins:</p>
-+        <ul>
-+          <li>Ladspa RDF (lrdf) support.</li>
-+        </ul>
-+        <p>Other changes:</p>
-+        <ul>
-+          <li>A lot of UI changes for better consistency and usability, menus, toolbars.</li>
-+          <li>Many many under the hood changes for more consistency
-+          and lower cpu usage in the editors</li>
-+          <li>Better support for HiDPI screens</li>
-+          <li>Lots and lots of new keyboard shortcuts and now a search
-+          field in the shortcut dialog to make it easier to locate
-+          shortcuts also.</li>
-+          <li>Many many new vectorized icons</li>
-+          <li>More colors in UI customizable, including for stylesheets</li>
-+          <li>Settings dialog redesigned to make it easier to navigate.</li>
-+          <li>Double click on track ID selects all tracks of the same type</li>
-+          <li>Transport window slightly redesigned</li>
-+          <li>Improvements to midi timing</li>
-+          <li>Global cut/insert improvements, fixes crashes with markers</li>
-+          <li>Rewind on stop setting</li>
-+        </ul>
++         <p>This is mostly a bugfix release following 3.1. A number of small and bigger bugs have been squashed (and probably a few added).</p>
++         <ul>
++           <li>Support midnam controllers (gmsynth.lv2 for example).</li>
++           <li>Audio: Fixed bad feedback / pinned meters with muted tracks in play mode.</li>
++           <li>Midi patch popup menu: Include patch number in the items' text.</li>
++           <li>Fixed issue #830: Wave Editor: Copy-on-write always triggered. Error from 01.01.2020</li>
++           <li>Fixed issue #831: Compressed song files (.gz,.bz2): Blank song on load. Error from 01.01.2020</li>
++           <li>Fixed issue #790: Crash when dragging parts to blank area.</li>
++           <li>Mixer strip shortcuts now configurable and work in both Arranger and Mixer</li>
++           <li>Fix slider/meter groove misalignment in mixer strip.</li>
++           <li>Midi controller graphs: Moved 'Add ctrl' button from bottom area to menu and toolbar as well.</li>
++           <li>Updated Simpledrums so it is possible to actually see the parameter settings.</li>
++           <li>Fix main window size/position issues upon startup</li>
++           <li>Arranger: Removed the small toggle button for mixer strip display/hide and cleaned up the layouts.</li>
++           <li>Fix Qt 5.14 / 5.15 deprecations</li>
++           <li>Many new customizing features implemented, internal colors, css properties. New theme (Dark Flat) as a showcase.</li>
++           <li>Midi Controller panel redesigned</li>
++           <li>Fix regression at 06.04.2020: Can't connect Jack ports to audio input/output tracks R chan.</li>
++           <li>Added support for adjusting automation for Global structure cut/insert</li>
++           <li>LV2: Fix plugins without 'programs extension' support: Send directly as midi events.</li>
++           <li>Fixes plugins like gmsynth.lv2, which have midnam support but no programs extension support.</li>
++           <li>New - PianoRoll Speaker button has two selectable modes, single note and chords:</li>
++           <li>New option in Global settings -> GUI tweaks to (not) keep transport window on top</li>
++           <li>Fix regression from 12.04.2019: Midi controller cache not proper after loading song.</li>
++           <li>Fixed 'drum ordering' bugs (drum notes order) after drag parts or duplicate tracks.</li>
++           <li>Added wave part extend beyond end of part if there is more wave file</li>
++           <li>Enable multiple resizing in piano roll (#748)</li>
++           <li>Enable CTRL+Left Mouse Click item selection in edit mode in piano roll</li>
++           <li>Enable Right Mouse Click for exclusive single selection in edit mode/piano roll</li>
++           <li>Fix EditPaste cursor HiDPI issue in midi editors->controller views</li>
++           <li>Fix tool cursor not changing in midi editors->controller views</li>
++         </ul>
 +      </description>
 +    </release>
-+    <release version="3.0.2" date="2018-01-30">
-+      <url>https://github.com/muse-sequencer/muse/blob/muse_3_0_2/muse3/ChangeLog</url>
-+      <description>
-+        <p>This release fixes many bugs.</p>
-+        <ul>
-+          <li>Fix crashes when selecting MIDI devices</li>
-+          <li>Issue #604 - build failure fixes</li>
-+          <li>Added appdata file</li>
-+          <li>Added ability to not specify a default out, instead a created midi track
-+          defaults to the port with highest number (usually the last created)
-+          this is also the default behaviour now</li>
-+        </ul>
-+      </description>
-+    </release>
-+  </releases>
- </component>
+     <release version="3.1.0" date="2020-02-23">
+       <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0/muse3/ChangeLog</url>
+       <description>

@@ -24,7 +24,7 @@
     "--env=LV2_PATH=/app/extensions/Plugins/lv2:/app/extensions/Lv2Plugins/lv2",
     "--env=DSSI_PATH=/app/extensions/Plugins/dssi",
     "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa:/app/extensions/LadspaPlugins/ladspa",
-    "--env=LXVST_PATH=/app/extensions/Plugins/lxvst:/app/extensions/VstPlugins/lxvst",
+    "--env=LXVST_PATH=/app/extensions/Plugins/lxvst",
     "--env=QT_ENABLE_HIGHDPI_SCALING=1"
   ],
   "add-extensions": {
@@ -49,14 +49,6 @@
       "version": "19.08",
       "add-ld-path": "lib",
       "merge-dirs": "ladspa",
-      "subdirectories": true,
-      "no-autodownload": true
-    },
-    "org.freedesktop.LinuxAudio.VstPlugins": {
-      "directory": "extensions/VstPlugins",
-      "version": "19.08",
-      "add-ld-path": "lib",
-      "merge-dirs": "lxvst",
       "subdirectories": true,
       "no-autodownload": true
     }
@@ -128,9 +120,7 @@
       "post-install": [
           "install -d /app/extensions/Plugins",
           "install -d /app/extensions/Lv2Plugins",
-          "install -d /app/extensions/LadspaPlugins",
-          "install -d /app/extensions/DssiPlugins",
-          "install -d /app/extensions/VstPlugins"
+          "install -d /app/extensions/LadspaPlugins"
       ],
       "sources": [
         {

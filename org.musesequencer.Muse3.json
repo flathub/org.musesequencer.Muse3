@@ -3,7 +3,7 @@
   "runtime": "org.kde.Platform",
   "runtime-version": "5.15",
   "sdk": "org.kde.Sdk",
-  "command": "muse3",
+  "command": "muse4",
   "tags": [ "beta" ],
   "branch": "beta",
   "desktop-file-name-suffix": " (Beta)",
@@ -11,22 +11,19 @@
     /* X11 + XShm access */
     "--share=ipc",
     "--socket=x11",
-    /* Wayland */
-    /* "--socket=wayland", */
     /* Note playback */
     "--socket=pulseaudio",
     /* MIDI + jack */
     "--device=all",
-    "--device=shm",
     /* Allow loading, saving files from anywhere (portals don’t work yet) */
     "--filesystem=home",
     /* Allow other instances to see lockfiles */
     "--env=TMPDIR=/var/tmp",
     /* On SuSE it seems to be necessary for sound to work */
     "--env=ALSA_CONFIG_PATH=",
-    "--env=LV2_PATH=/app/extensions/Plugins/lv2:/app/extensions/Lv2Plugins/lv2",
+    "--env=LV2_PATH=/app/extensions/Plugins/lv2",
     "--env=DSSI_PATH=/app/extensions/Plugins/dssi",
-    "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa:/app/extensions/LadspaPlugins/ladspa",
+    "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa",
     "--env=LXVST_PATH=/app/extensions/Plugins/lxvst",
     "--env=QT_ENABLE_HIGHDPI_SCALING=1"
   ],
@@ -103,15 +100,14 @@
           "LADSPA_PATH=/app/lib/ladspa"
         ]
       },
-      "subdir": "muse3",
       "post-install": [
           "install -d /app/extensions/Plugins"
       ],
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/muse-sequencer/muse/archive/muse_3_1_1.tar.gz",
-          "sha256": "f3738ed4b3e6f1f055665ab8b85c4b8fd681afde8598b07172242c7a721b5628"
+          "url": "https://github.com/muse-sequencer/muse/releases/download/4.0pre1/muse-4.0pre1.tar.gz",
+          "sha256": "cb0bc6c263dd4d9b7e2979681a98033757785b608c5f7fcc823eb762dcc21de0"
         },
         {
           "type": "patch",

@@ -6,8 +6,8 @@ Date:   Tue Nov 19 22:44:04 2019 -0500
 
 diff --git a/muse3/CMakeLists.txt b/muse3/CMakeLists.txt
 index 51331209..1e5aaa92 100644
---- a/muse3/CMakeLists.txt
-+++ b/muse3/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
 @@ -490,7 +490,7 @@ if (ENABLE_LV2)
      if (LILV_FOUND AND SORD_FOUND AND LV2_FOUND)
          ## find Gtk2

@@ -1,11 +1,13 @@
 diff --git a/muse3/packaging/org.musesequencer.Muse3.appdata.xml b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
 index 1ff4e498..fe9d80c1 100644
---- a/muse3/packaging/org.musesequencer.Muse3.appdata.xml
-+++ b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
-@@ -17,5 +18,42 @@
+--- a/packaging/org.musesequencer.Muse3.appdata.xml
++++ b/packaging/org.musesequencer.Muse3.appdata.xml
+@@ -17,5 +18,44 @@
    <url type="homepage">https://muse-sequencer.github.io/</url>
    <update_contact>lmuse-user_at_lists.sourceforge.net</update_contact>
++  <content_rating type="oars-1.1" />
    <releases>
++    <release version="4.0pre1" date="2020-11-15" />
 +    <release version="3.1.1" date="2020-07-18">
 +      <url>https://github.com/muse-sequencer/muse/releases/tag/muse_3_1_1</url>
 +      <description>

@@ -4,6 +4,9 @@
   "runtime-version": "5.15",
   "sdk": "org.kde.Sdk",
   "command": "muse3",
+  "tags": [ "beta" ],
+  "branch": "beta",
+  "desktop-file-name-suffix": " (Beta)",
   "finish-args": [
     /* X11 + XShm access */
     "--share=ipc",

@@ -1,50 +1,21 @@
-diff --git a/muse3/packaging/org.musesequencer.Muse3.appdata.xml b/muse3/packaging/org.musesequencer.Muse3.appdata.xml
-index 1ff4e498..fe9d80c1 100644
---- a/packaging/org.musesequencer.Muse3.appdata.xml
-+++ b/packaging/org.musesequencer.Muse3.appdata.xml
-@@ -17,5 +18,44 @@
-   <url type="homepage">https://muse-sequencer.github.io/</url>
-   <update_contact>lmuse-user_at_lists.sourceforge.net</update_contact>
-+  <content_rating type="oars-1.1" />
+diff --git a/muse3/packaging/org.musesequencer.Muse4.appdata.xml b/muse3/packaging/org.musesequencer.Muse4.appdata.xml
+index e6c9a09f..b3e45c3d 100644
+--- a/muse3/packaging/org.musesequencer.Muse4.appdata.xml
++++ b/muse3/packaging/org.musesequencer.Muse4.appdata.xml
+@@ -2,7 +2,7 @@
+ <!-- Copyright (C) 1999-2020 MusE development team -->
+ 
+ <component type="desktop">
+-  <id>org.musesequencer.Muse4</id>
++  <id>org.musesequencer.Muse3</id>
+   <metadata_license>CC0-1.0</metadata_license>
+   <project_license>GPL-2.0+</project_license>
+   <name>MusE</name>
+@@ -49,6 +49,7 @@
+   </provides>
+ 
    <releases>
-+    <release version="4.0pre1" date="2020-11-15" />
-+    <release version="3.1.1" date="2020-07-18">
-+      <url>https://github.com/muse-sequencer/muse/releases/tag/muse_3_1_1</url>
-+      <description>
-+         <p>This is mostly a bugfix release following 3.1. A number of small and bigger bugs have been squashed (and probably a few added).</p>
-+         <ul>
-+           <li>Support midnam controllers (gmsynth.lv2 for example).</li>
-+           <li>Audio: Fixed bad feedback / pinned meters with muted tracks in play mode.</li>
-+           <li>Midi patch popup menu: Include patch number in the items' text.</li>
-+           <li>Fixed issue #830: Wave Editor: Copy-on-write always triggered. Error from 01.01.2020</li>
-+           <li>Fixed issue #831: Compressed song files (.gz,.bz2): Blank song on load. Error from 01.01.2020</li>
-+           <li>Fixed issue #790: Crash when dragging parts to blank area.</li>
-+           <li>Mixer strip shortcuts now configurable and work in both Arranger and Mixer</li>
-+           <li>Fix slider/meter groove misalignment in mixer strip.</li>
-+           <li>Midi controller graphs: Moved 'Add ctrl' button from bottom area to menu and toolbar as well.</li>
-+           <li>Updated Simpledrums so it is possible to actually see the parameter settings.</li>
-+           <li>Fix main window size/position issues upon startup</li>
-+           <li>Arranger: Removed the small toggle button for mixer strip display/hide and cleaned up the layouts.</li>
-+           <li>Fix Qt 5.14 / 5.15 deprecations</li>
-+           <li>Many new customizing features implemented, internal colors, css properties. New theme (Dark Flat) as a showcase.</li>
-+           <li>Midi Controller panel redesigned</li>
-+           <li>Fix regression at 06.04.2020: Can't connect Jack ports to audio input/output tracks R chan.</li>
-+           <li>Added support for adjusting automation for Global structure cut/insert</li>
-+           <li>LV2: Fix plugins without 'programs extension' support: Send directly as midi events.</li>
-+           <li>Fixes plugins like gmsynth.lv2, which have midnam support but no programs extension support.</li>
-+           <li>New - PianoRoll Speaker button has two selectable modes, single note and chords:</li>
-+           <li>New option in Global settings -> GUI tweaks to (not) keep transport window on top</li>
-+           <li>Fix regression from 12.04.2019: Midi controller cache not proper after loading song.</li>
-+           <li>Fixed 'drum ordering' bugs (drum notes order) after drag parts or duplicate tracks.</li>
-+           <li>Added wave part extend beyond end of part if there is more wave file</li>
-+           <li>Enable multiple resizing in piano roll (#748)</li>
-+           <li>Enable CTRL+Left Mouse Click item selection in edit mode in piano roll</li>
-+           <li>Enable Right Mouse Click for exclusive single selection in edit mode/piano roll</li>
-+           <li>Fix EditPaste cursor HiDPI issue in midi editors->controller views</li>
-+           <li>Fix tool cursor not changing in midi editors->controller views</li>
-+         </ul>
-+      </description>
-+    </release>
-     <release version="3.1.0" date="2020-02-23">
-       <url>https://github.com/muse-sequencer/muse/blob/muse_3_1_0/muse3/ChangeLog</url>
++    <release version="4.0.0-pre2" date="2021-01-25" />
+     <release version="4.0.0-pre1" date="2020-11-15">
        <description>
+         <p>Apart from the usual bunch of bug fixes and improvements 

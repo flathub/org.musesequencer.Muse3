@@ -7,6 +7,8 @@
   "tags": [ "beta" ],
   "branch": "beta",
   "desktop-file-name-suffix": " (Beta)",
+  "rename-appdata-file": "org.musesequencer.Muse4.appdata.xml",
+  "rename-desktop-file": "org.musesequencer.Muse4.desktop",
   "finish-args": [
     /* X11 + XShm access */
     "--share=ipc",
@@ -106,8 +108,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/muse-sequencer/muse/releases/download/4.0pre1/muse-4.0pre1.tar.gz",
-          "sha256": "cb0bc6c263dd4d9b7e2979681a98033757785b608c5f7fcc823eb762dcc21de0"
+          "url": "https://github.com/muse-sequencer/muse/releases/download/4.0pre2/muse-4.0pre2.tar.gz",
+          "sha256": "83deb88eb9eae33124a192cb70437e383a1551aee27d8b826ce9bfaa782363f6"
         },
         {
           "type": "patch",
@@ -116,7 +118,7 @@
         },
         {
           "type": "patch",
-          "strip-components": 1,
+          "strip-components": 2,
           "path": "patches/muse-appdata.patch"
         }
       ]

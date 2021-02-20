@@ -7,6 +7,7 @@
   "tags": [ "beta" ],
   "branch": "beta",
   "desktop-file-name-suffix": " (Beta)",
+  "rename-icon": "muse",
   "rename-appdata-file": "org.musesequencer.Muse4.appdata.xml",
   "rename-desktop-file": "org.musesequencer.Muse4.desktop",
   "finish-args": [
@@ -15,8 +16,11 @@
     "--socket=x11",
     /* Note playback */
     "--socket=pulseaudio",
-    /* MIDI + jack */
+    /* MIDI */
     "--device=all",
+    /* JACK */
+    "--filesystem=xdg-run/pipewire-0",
+    "--socket=system-bus",
     /* Allow loading, saving files from anywhere (portals don’t work yet) */
     "--filesystem=home",
     /* Allow other instances to see lockfiles */
@@ -43,6 +47,8 @@
     "/include",
     "/lib/cmake",
     "/lib/pkgconfig",
+    "/lib/jack/*",
+    "/lib/libjack*",
     "/share/man",
     "/share/doc",
     "/share/gtk-doc",
@@ -108,8 +114,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/muse-sequencer/muse/releases/download/4.0pre2/muse-4.0pre2.tar.gz",
-          "sha256": "83deb88eb9eae33124a192cb70437e383a1551aee27d8b826ce9bfaa782363f6"
+          "url": "https://github.com/muse-sequencer/muse/releases/download/4.0.0-pre3/muse-4.0pre3.tar.gz",
+          "sha256": "2e3dba204ee1a176228a274bf3c064230ca2c331d395e764b7b9a3f3269bb2b7"
         },
         {
           "type": "patch",

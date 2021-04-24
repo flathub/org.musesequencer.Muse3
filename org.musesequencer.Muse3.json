@@ -8,13 +8,13 @@
     /* X11 + XShm access */
     "--share=ipc",
     "--socket=x11",
-    /* Wayland */
-    /* "--socket=wayland", */
     /* Note playback */
     "--socket=pulseaudio",
-    /* MIDI + jack */
+    /* MIDI */
     "--device=all",
-    "--device=shm",
+    /* JACK */
+    "--filesystem=xdg-run/pipewire-0",
+    "--system-talk-name=org.freedesktop.RealtimeKit1",
     /* Allow loading, saving files from anywhere (portals don’t work yet) */
     "--filesystem=home",
     /* Allow other instances to see lockfiles */
@@ -66,7 +66,6 @@
       ]
     },
     "shared-modules/linux-audio/libinstpatch.json",
-    "shared-modules/linux-audio/lash.json",
     "shared-modules/linux-audio/fluidsynth2.json",
     {
       "name": "rtaudio",

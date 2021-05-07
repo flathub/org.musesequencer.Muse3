@@ -21,9 +21,9 @@
     "--env=TMPDIR=/var/tmp",
     /* On SuSE it seems to be necessary for sound to work */
     "--env=ALSA_CONFIG_PATH=",
-    "--env=LV2_PATH=/app/extensions/Plugins/lv2:/app/extensions/Lv2Plugins/lv2",
+    "--env=LV2_PATH=/app/extensions/Plugins/lv2",
     "--env=DSSI_PATH=/app/extensions/Plugins/dssi",
-    "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa:/app/extensions/LadspaPlugins/ladspa",
+    "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa",
     "--env=LXVST_PATH=/app/extensions/Plugins/lxvst",
     "--env=QT_ENABLE_HIGHDPI_SCALING=1"
   ],

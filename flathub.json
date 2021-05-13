@@ -1,5 +1,5 @@
 {
   "skip-icons-check": true,
-  "end-of-life": "The application has been renamed to...",
-  "end-of-life-rebase": "io.github.muse-sequencer.Muse"
+  "end-of-life": "The application has been renamed to io.github.muse_sequencer.Muse.",
+  "end-of-life-rebase": "io.github.muse_sequencer.Muse"
 }
